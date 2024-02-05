@@ -1,5 +1,5 @@
 export const CONSTANTS = {
-	URL: 'https://rv.in-phone.com/',
+	URL: 'https://notes-keeper-eta.vercel.app/',
 
 	DEFAULT_LANGUAGE: 'uk',
 

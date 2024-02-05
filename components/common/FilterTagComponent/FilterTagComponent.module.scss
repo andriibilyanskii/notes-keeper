@@ -1,0 +1,39 @@
+@import '@styles/colors.module.scss';
+
+@mixin filterTag {
+	border-radius: 4px;
+	width: fit-content;
+	padding: 8px 12px;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	gap: 4px;
+	background-color: $primary-white;
+	border: 1px solid $gray-200;
+	cursor: pointer;
+	height: 2rem;
+
+	&:hover {
+		background: #2f8cf814;
+	}
+}
+
+.filterTag {
+	@include filterTag;
+
+	&Icon {
+		width: 12px;
+		height: 12px;
+		background-color: $gray-900;
+	}
+
+	&_selected {
+		border-color: $primary-blue;
+		background-color: #2f8cf814;
+	}
+
+	&-text {
+		width: max-content;
+	}
+}

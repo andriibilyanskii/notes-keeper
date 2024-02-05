@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
 
 interface IProps {
@@ -8,11 +9,17 @@ interface IProps {
 export const PrivateRoute: React.FC<IProps> = (props) => {
 	const { children } = props;
 
+	const { data: session } = useSession();
+
 	const router = useRouter();
 
-	const temp = true;
+	useEffect(() => {
+		if (typeof session !== 'undefined' && !session?.user) {
+			router.replace('/auth/login');
+		}
+	}, [session]);
 
-	if (temp) {
+	if (session?.user) {
 		return <>{children}</>;
 	} else {
 		return null;

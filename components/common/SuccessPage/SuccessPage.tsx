@@ -7,10 +7,6 @@ import { useLanguage } from '@shared/hooks';
 import styles from './SuccessPage.module.scss';
 
 interface IProps {
-	metaTags?: {
-		title: string;
-		description?: string;
-	};
 	headerText?: string;
 	goToMainHandler?: (e: any) => void;
 	iconSrc: string;
@@ -19,13 +15,12 @@ interface IProps {
 }
 
 const SuccessPage: React.FC<IProps> = (props) => {
-	const { goToMainHandler, metaTags, headerText, iconSrc, textP1, textS1 } = props;
+	const { goToMainHandler, headerText, iconSrc, textP1, textS1 } = props;
 
 	const { language } = useLanguage();
 
 	return (
 		<PageCover
-			metaTags={metaTags}
 			headers={[
 				{
 					type: 'back',

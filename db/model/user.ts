@@ -11,11 +11,6 @@ const schema = new Schema({
 		require: true,
 		trim: true,
 	},
-	token: {
-		type: String,
-		require: true,
-		trim: true,
-	},
 	createdDate: {
 		type: String,
 		require: true,
@@ -23,6 +18,6 @@ const schema = new Schema({
 	},
 });
 
-const User = models.worker || model('worker', schema);
+const User = models.user || model('user', schema);
 
 export default User;

@@ -4,9 +4,9 @@
 	"display": "standalone",
 	"scope": "/",
 	"start_url": "/",
-	"name": "In-Phone Reviews",
-	"short_name": "In-Phone Reviews",
-	"description": "In-Phone Reviews",
+	"name": "Notes Keeper",
+	"short_name": "Notes Keeper",
+	"description": "Notes Keeper",
 	"icons": [
 		{
 			"src": "/icon-192x192.png",

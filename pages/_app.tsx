@@ -1,7 +1,6 @@
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
 import React from 'react';
-import Script from 'next/script';
 import { useRouter } from 'next/router';
 import { SessionProvider } from 'next-auth/react';
 import { AnimatePresence } from 'framer-motion';
@@ -26,14 +25,10 @@ function MyApp({ Component, pageProps }: AppProps) {
 				<AnimatePresence initial={false} mode='popLayout'>
 					<div>
 						<Head>
-							<title>
-								{languageHook(LANGUAGES.META_TAGS.DESCRIPTION.main)}
-							</title>
+							<title>{languageHook(LANGUAGES.metaTag)}</title>
 							<meta
 								name='description'
-								content={languageHook(
-									LANGUAGES.META_TAGS.DESCRIPTION.description
-								)}
+								content={languageHook(LANGUAGES.metaTag)}
 							/>
 							<link rel='icon' type='image/png' href='/logo.png' />
 							<meta

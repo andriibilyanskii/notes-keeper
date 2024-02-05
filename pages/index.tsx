@@ -1,10 +1,22 @@
-import type { NextPage } from 'next';
-import { useEffect } from 'react';
+import type {NextPage} from 'next';
+import {useSession} from "next-auth/react";
 
-import { CONSTANTS } from '@constants';
+
+import {About, NotesPage} from '@components';
+
+import {useUserContext} from '@shared';
 
 const Home: NextPage = () => {
-	return <div>Notes Keeper</div>;
+	const {user} = useUserContext();
+
+	const {data: session} = useSession();
+
+
+	if (typeof session !== 'undefined' && !session?.user) {
+		return <About/>;
+	}
+
+	return <NotesPage/>;
 };
 
 export default Home;

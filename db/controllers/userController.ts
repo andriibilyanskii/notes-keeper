@@ -4,6 +4,16 @@ import { IUser } from '@db/interfaces';
 import { getJSON } from '@shared';
 
 const UserController = {
+	exists: {
+		async byUsername(username: string): Promise<any> {
+			return await User.exists({ username });
+		},
+
+		async byID(_id: string): Promise<any> {
+			return await User.exists({ _id });
+		},
+	},
+
 	get: {
 		async all(): Promise<Array<IUser>> {
 			return getJSON(await User.find());
@@ -26,25 +36,9 @@ const UserController = {
 		},
 	},
 
-	save: {
-		async clientsLogin(restaurantID: string, userDeviceInfo: any): Promise<string> {
-			let clientLoginID = '';
-			try {
-				// const userLogin: IClientLogin = {
-				// 	table: 'rv',
-				// 	restaurantID: restaurantID,
-				// 	createdDate: new Date().toISOString(),
-				// 	userDeviceInfo: userDeviceInfo || {},
-				// 	loginType: 'rv',
-				// };
-				// const client = await (await new ClientLogin(userLogin)).save();
-				// clientLoginID = String(client._id);
-			} catch (e) {
-				console.log(e);
-			}
-
-			return clientLoginID;
-		},
+	async save(userData: IUser): Promise<IUser> {
+		const user = await new User(userData);
+		return await user.save();
 	},
 };
 

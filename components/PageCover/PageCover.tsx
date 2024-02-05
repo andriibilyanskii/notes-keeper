@@ -2,9 +2,11 @@ import React, { CSSProperties } from 'react';
 import { useRouter } from 'next/router';
 import classNames from 'classnames';
 
-import { MetaTags, PageTransition, PopUp, Loader } from '@components';
+import { PageTransition, PopUp, Loader, Text } from '@components';
 
 import styles from './PageCover.module.scss';
+import { LANGUAGES } from '@languages';
+import { useLanguage } from '@shared/hooks';
 
 interface IProps {
 	children?: React.ReactNode;
@@ -24,16 +26,6 @@ interface IProps {
 		props?: any;
 	}>;
 	withFooter?: boolean;
-	metaTags?: {
-		title?: string;
-		description?: string;
-		image?: {
-			url: string;
-			alt: string;
-			type: 'image/svg+xml' | 'image/jpeg' | 'image/*';
-		};
-		dontShowEndLine?: boolean;
-	};
 	mainPadding?: boolean;
 	style?: CSSProperties;
 	onlyPhone?: boolean;
@@ -46,13 +38,14 @@ const PageCover: React.FC<IProps> = (props, ref) => {
 		mainClassName,
 		headers,
 		withFooter,
-		metaTags,
 		mainPadding,
 		style,
 		onlyPhone,
 	} = props;
 
 	const router = useRouter();
+
+	const { language } = useLanguage();
 
 	return (
 		<div
@@ -65,11 +58,24 @@ const PageCover: React.FC<IProps> = (props, ref) => {
 				[styles[className || '']]: !!className,
 				[className || '']: !!className,
 			})}
-			style={style}
+			style={{ backgroundImage: `url(/img/clouds-bg-transparent.svg)`, ...style }}
 		>
-			<MetaTags {...metaTags} />
-
 			<PageTransition ref={ref}>
+				<div
+					className={classNames({
+						[styles['header']]: true,
+					})}
+				>
+					<Text.Title
+						type={'h3'}
+						className={classNames({
+							[styles['header-text']]: true,
+						})}
+					>
+						{language(LANGUAGES.metaTag)}
+					</Text.Title>
+				</div>
+
 				<main
 					className={classNames({
 						[styles['main']]: true,

@@ -24,6 +24,7 @@ export { PopupHeader } from './common/PopupHeader/PopupHeader';
 export { Loader } from './common/Loader/Loader';
 export { SuccessPage } from './common/SuccessPage/SuccessPage';
 export { IconContent } from './common/IconContent/IconContent';
+export { FilterTagComponent } from './common/FilterTagComponent/FilterTagComponent';
 
 export { PrivateRoute } from './PrivateRoute/PrivateRoute';
 
@@ -31,4 +32,11 @@ export { default as PageTransition } from './PageTransition/PageTransition';
 export { PageCover } from './PageCover/PageCover';
 export { SWRProvider } from './SWRProvider/SWRProvider';
 
-export { MetaTags } from './MetaTags/MetaTags';
+export { default as NoteCard } from './pageParts/main/NoteCard/NoteCard';
+
+export const About = dynamic(() => import('./pageParts/about/About/About'));
+export const AuthLayout = dynamic(() => import('./pageParts/auth/AuthLayout/AuthLayout'));
+export const NotesPage = dynamic(() => import('./pageParts/main/NotesPage/NotesPage'));
+export const CategoryForm = dynamic(() => import('./pageParts/main/CategoryForm/CategoryForm'));
+export const NoteForm = dynamic(() => import('./pageParts/main/NoteForm/NoteForm'));
+export const NoteInfo = dynamic(() => import('./pageParts/main/NoteInfo/NoteInfo'));

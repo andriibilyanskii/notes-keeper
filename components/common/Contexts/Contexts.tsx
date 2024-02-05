@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from 'react';
+import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
 
-import { PopUpContext, AppContext } from '@context';
+import { ICategory, INote, IUser } from '@db/interfaces';
+
+import { PopUpContext, AppContext, UserContext, NotesContext } from '@context';
+
 import { LANGUAGES } from '@languages';
 
-import { getDataFromLocalStorage } from '@shared';
+import { cookies, getDataFromLocalStorage } from '@shared';
 
 interface IProps {
 	children: React.ReactNode;
@@ -15,10 +19,22 @@ const Contexts: React.FC<IProps> = (props) => {
 
 	const router = useRouter();
 
+	const { data: session, status } = useSession();
+	const [user, setUser] = useState<IUser>({} as IUser);
+
+	useEffect(() => {
+		setUser(
+			(((session?.user as IUser)?._id ===
+			JSON.parse(cookies.getCookie('next-user') || '{}')?._id
+				? JSON.parse(cookies.getCookie('next-user') || '{}')
+				: session?.user) || {}) as IUser
+		);
+	}, [session]);
+
 	const [language, setLanguage] = useState(
 		typeof window !== 'undefined'
 			? (getDataFromLocalStorage('user-language', 'string') as string) ||
-					(LANGUAGES.reviewsInPhone?.[window.navigator.language.split('-')?.[0]]
+					(LANGUAGES.metaTag?.[window.navigator.language.split('-')?.[0]]
 						? window.navigator.language.split('-')[0]
 						: 'uk')
 			: 'uk'
@@ -39,6 +55,16 @@ const Contexts: React.FC<IProps> = (props) => {
 	const [popupClassName, setPopupClassName] = useState('');
 	const [onClosePopup, setOnClosePopup] = useState<any>(() => {});
 
+	const [notes, setNotes] = useState<Array<INote>>([]);
+	const [categories, setCategories] = useState<Array<ICategory>>([]);
+	const [selectedCategory, setSelectedCategory] = useState('all');
+
+	useEffect(() => {
+		if (router?.query?.category) {
+			setSelectedCategory(router?.query?.category as string);
+		}
+	}, [router?.query?.category]);
+
 	return (
 		<AppContext.Provider
 			value={{
@@ -48,22 +74,42 @@ const Contexts: React.FC<IProps> = (props) => {
 				setShowLoader,
 			}}
 		>
-			<PopUpContext.Provider
+			<UserContext.Provider
 				value={{
-					isOpenPopUp,
-					setIsOpenPopUp,
-					popupChildren,
-					setPopupChildren,
-					popupHeader,
-					setPopupHeader,
-					popupClassName,
-					setPopupClassName,
-					onClosePopup,
-					setOnClosePopup,
+					user,
+					setUser,
+
+					status,
 				}}
 			>
-				{children}
-			</PopUpContext.Provider>
+				<PopUpContext.Provider
+					value={{
+						isOpenPopUp,
+						setIsOpenPopUp,
+						popupChildren,
+						setPopupChildren,
+						popupHeader,
+						setPopupHeader,
+						popupClassName,
+						setPopupClassName,
+						onClosePopup,
+						setOnClosePopup,
+					}}
+				>
+					<NotesContext.Provider
+						value={{
+							notes,
+							setNotes,
+							categories,
+							setCategories,
+							selectedCategory,
+							setSelectedCategory,
+						}}
+					>
+						{children}
+					</NotesContext.Provider>
+				</PopUpContext.Provider>
+			</UserContext.Provider>
 		</AppContext.Provider>
 	);
 };
