@@ -4,7 +4,6 @@ export { getDataFromLocalStorage } from './getDataFromLocalStorage';
 export { hashPassword } from './hashPassword';
 export { comparePassword } from './comparePassword';
 export { getImage } from './getImage';
-export { groupData } from './groupData';
 export { swrFetcher } from './swrFetcher';
 export { formatDate } from './formatDate';
 export { getJSON } from './getJSON';

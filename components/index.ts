@@ -8,7 +8,6 @@ export { Icon } from './common/Icon/Icon';
 export { Input } from './common/Input/Input';
 export { Tag } from './common/Tag/Tag';
 export { Link } from './common/Link/Link';
-export { LazyLoadImage } from './common/LazyLoadImage/LazyLoadImage';
 export { PhoneInput } from './common/PhoneInput/PhoneInput';
 export { PopUp } from './common/PopUp/PopUp';
 export { ReactStars } from './common/ReactStars/ReactStars';

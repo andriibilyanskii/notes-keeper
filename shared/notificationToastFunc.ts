@@ -1,9 +1,8 @@
 import { toast } from 'react-toastify';
 
-import { INotificationToast } from '@db/interfaces';
 import { LANGUAGES } from '@languages';
 
-export const notificationToastFunc = (props: INotificationToast) => {
+export const notificationToastFunc = (props) => {
 	const { type, text, language, ...rest } = props;
 
 	const toastObj = {

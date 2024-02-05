@@ -4,8 +4,6 @@ import classNames from 'classnames';
 
 import { INextImage } from '@componentInterfaces';
 
-import { LazyLoadImage } from '@components';
-
 import { getImage } from '@shared';
 
 import styles from './Image.module.scss';
@@ -34,57 +32,6 @@ const Image: React.FC<IProps> = (props) => {
 	const onError = () => {
 		setIsError(true);
 	};
-
-	if (
-		(!isBlob || src_image?.startsWith('https://in-phone.com/images/')) &&
-		nextImg &&
-		!lazyLoad
-	) {
-		return (
-			<div
-				className={classNames({
-					[styles['imageNextBlock']]: true,
-					[classNameBlock || '']: !!classNameBlock,
-				})}
-			>
-				<ImageNext
-					className={classNames({
-						[styles['image']]: true,
-						[className || '']: !!className,
-					})}
-					src={
-						src_image?.startsWith('https://in-phone.com/images/')
-							? (src_image as string)
-							: (imagePlaceholder as string)
-					}
-					onError={onError}
-					placeholder='blur'
-					blurDataURL={src_image?.replace(
-						'https://in-phone.com/images/',
-						'https://in-phone.com/images/thumbs/'
-					)}
-					objectFit={nextImg?.objectFit || 'cover'}
-					layout={!isError ? nextImg?.layout || 'responsive' : 'responsive'}
-					{...(nextImg?.width ? { width: nextImg?.width } : {})}
-					{...(nextImg?.height ? { height: nextImg?.height } : {})}
-					priority={nextImg?.priority}
-					sizes={nextImg?.sizes}
-				/>
-			</div>
-		);
-	}
-
-	if (lazyLoad) {
-		return (
-			<LazyLoadImage
-				src={src || ''}
-				className={classNames({
-					[styles['image']]: true,
-					[className || '']: !!className,
-				})}
-			/>
-		);
-	}
 
 	return (
 		// eslint-disable-next-line @next/next/no-img-element

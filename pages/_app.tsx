@@ -23,7 +23,6 @@ function MyApp({ Component, pageProps }: AppProps) {
 	return (
 		<SessionProvider refetchInterval={0} session={(pageProps as any)?.session}>
 			<Contexts>
-				{/* <SWRProvider> */}
 				<AnimatePresence initial={false} mode='popLayout'>
 					<div>
 						<Head>
@@ -36,7 +35,6 @@ function MyApp({ Component, pageProps }: AppProps) {
 									LANGUAGES.META_TAGS.DESCRIPTION.description
 								)}
 							/>
-							{/*<link rel='icon' href='/favicon.ico' />*/}
 							<link rel='icon' type='image/png' href='/logo.png' />
 							<meta
 								name='viewport'
@@ -49,29 +47,14 @@ function MyApp({ Component, pageProps }: AppProps) {
 									href={CONSTANTS.URL + router?.asPath.slice(1)}
 								/>
 							)}
-							<meta
-								name='keywords'
-								content={languageHook(LANGUAGES.META_TAGS.eatwyKeywords)}
-							/>
+
 							<meta name='robots' content='index, follow' />
 						</Head>
-						{/*<Script
-							src={`https://www.googletagmanager.com/gtag/js?id=${CONSTANTS.GA_TRACKING_ID}`}
-						/>*/}
-						{/*<Script id='google-analytics'>
-							{`
-							  window.dataLayer = window.dataLayer || [];
-							  function gtag(){dataLayer.push(arguments);}
-							  gtag('js', new Date());
 
-         					  gtag('config','${CONSTANTS.GA_TRACKING_ID}',{page_path:window.location.pathname});
-        					`}
-						</Script>*/}
 						<Component {...pageProps} />
 						<NotificationToast />
 					</div>
 				</AnimatePresence>
-				{/* </SWRProvider> */}
 			</Contexts>
 		</SessionProvider>
 	);
