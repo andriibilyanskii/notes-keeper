@@ -20,3 +20,4 @@ export { cookies } from './cookies';
 
 export { useAppContext } from './contextHooks/useAppContext';
 export { usePopUpContext } from './contextHooks/usePopUpContext';
+export { useUserContext } from './contextHooks/useUserContext';

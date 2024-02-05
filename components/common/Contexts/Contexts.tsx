@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from 'react';
+import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
 
-import { PopUpContext, AppContext } from '@context';
+import { IUser } from '@db/interfaces';
+
+import { PopUpContext, AppContext, UserContext } from '@context';
+
 import { LANGUAGES } from '@languages';
 
-import { getDataFromLocalStorage } from '@shared';
+import { cookies, getDataFromLocalStorage } from '@shared';
 
 interface IProps {
 	children: React.ReactNode;
@@ -14,6 +18,18 @@ const Contexts: React.FC<IProps> = (props) => {
 	const { children } = props;
 
 	const router = useRouter();
+
+	const { data: session, status } = useSession();
+	const [user, setUser] = useState<IUser>({} as IUser);
+
+	useEffect(() => {
+		setUser(
+			(((session?.user as IUser)?._id ===
+			JSON.parse(cookies.getCookie('next-user') || '{}')?._id
+				? JSON.parse(cookies.getCookie('next-user') || '{}')
+				: session?.user) || {}) as IUser
+		);
+	}, [session]);
 
 	const [language, setLanguage] = useState(
 		typeof window !== 'undefined'
@@ -48,22 +64,31 @@ const Contexts: React.FC<IProps> = (props) => {
 				setShowLoader,
 			}}
 		>
-			<PopUpContext.Provider
+			<UserContext.Provider
 				value={{
-					isOpenPopUp,
-					setIsOpenPopUp,
-					popupChildren,
-					setPopupChildren,
-					popupHeader,
-					setPopupHeader,
-					popupClassName,
-					setPopupClassName,
-					onClosePopup,
-					setOnClosePopup,
+					user,
+					setUser,
+
+					status,
 				}}
 			>
-				{children}
-			</PopUpContext.Provider>
+				<PopUpContext.Provider
+					value={{
+						isOpenPopUp,
+						setIsOpenPopUp,
+						popupChildren,
+						setPopupChildren,
+						popupHeader,
+						setPopupHeader,
+						popupClassName,
+						setPopupClassName,
+						onClosePopup,
+						setOnClosePopup,
+					}}
+				>
+					{children}
+				</PopUpContext.Provider>
+			</UserContext.Provider>
 		</AppContext.Provider>
 	);
 };

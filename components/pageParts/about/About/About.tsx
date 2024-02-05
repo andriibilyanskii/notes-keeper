@@ -4,7 +4,7 @@ import classNames from 'classnames';
 
 import { Text, PageCover, Link, Button, IconContent, Icon, Input, Image } from '@components';
 
-import { getColor } from '@shared';
+import { getColor, useUserContext } from '@shared';
 import { useLanguage } from '@shared/hooks';
 
 import { LANGUAGES } from '@languages';
@@ -15,31 +15,34 @@ import styles from './About.module.scss';
 const About: React.FC = () => {
 	const { language } = useLanguage();
 
-	const refAbout: any = useRef(null);
-	const refForWhat: any = useRef(null);
+	const { user } = useUserContext();
+
+	useEffect(() => {
+		console.log(user);
+	});
 
 	return (
 		<PageCover
 			mainClassName={classNames({
-				[styles['aboutEatwy']]: true,
+				[styles['about']]: true,
 			})}
-			onlyPhone={true}
+			// onlyPhone={true}
 			mainPadding={false}
 		>
-			<div
-				className={classNames({
-					[styles['aboutEatwy-textBlock']]: true,
-				})}
-			>
-				<Text.Title
-					type={'h3'}
+			{!user?._id && (
+				<div
 					className={classNames({
-						[styles['aboutEatwy-textBlock-text']]: true,
+						[styles['about-buttons']]: true,
 					})}
 				>
-					Notes Keeper
-				</Text.Title>
-			</div>
+					<Button width100={true} linkTo={'/auth/login'}>
+						{language(LANGUAGES.login)}
+					</Button>
+					<Button width100={true} linkTo={'/auth/register'} buttonType={'secondary'}>
+						{language(LANGUAGES.register)}
+					</Button>
+				</div>
+			)}
 		</PageCover>
 	);
 };

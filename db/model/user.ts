@@ -11,11 +11,6 @@ const schema = new Schema({
 		require: true,
 		trim: true,
 	},
-	token: {
-		type: String,
-		require: true,
-		trim: true,
-	},
 	createdDate: {
 		type: String,
 		require: true,

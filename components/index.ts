@@ -32,3 +32,4 @@ export { PageCover } from './PageCover/PageCover';
 export { SWRProvider } from './SWRProvider/SWRProvider';
 
 export const About = dynamic(() => import('./pageParts/about/About/About'));
+export const AuthLayout = dynamic(() => import('./pageParts/auth/AuthLayout/AuthLayout'));

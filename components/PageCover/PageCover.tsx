@@ -2,9 +2,11 @@ import React, { CSSProperties } from 'react';
 import { useRouter } from 'next/router';
 import classNames from 'classnames';
 
-import { PageTransition, PopUp, Loader } from '@components';
+import { PageTransition, PopUp, Loader, Text } from '@components';
 
 import styles from './PageCover.module.scss';
+import { LANGUAGES } from '@languages';
+import { useLanguage } from '@shared/hooks';
 
 interface IProps {
 	children?: React.ReactNode;
@@ -43,6 +45,8 @@ const PageCover: React.FC<IProps> = (props, ref) => {
 
 	const router = useRouter();
 
+	const { language } = useLanguage();
+
 	return (
 		<div
 			className={classNames({
@@ -54,9 +58,24 @@ const PageCover: React.FC<IProps> = (props, ref) => {
 				[styles[className || '']]: !!className,
 				[className || '']: !!className,
 			})}
-			style={style}
+			style={{ backgroundImage: `url(/img/clouds-bg-transparent.svg)`, ...style }}
 		>
 			<PageTransition ref={ref}>
+				<div
+					className={classNames({
+						[styles['header']]: true,
+					})}
+				>
+					<Text.Title
+						type={'h3'}
+						className={classNames({
+							[styles['header-text']]: true,
+						})}
+					>
+						{language(LANGUAGES.metaTag)}
+					</Text.Title>
+				</div>
+
 				<main
 					className={classNames({
 						[styles['main']]: true,

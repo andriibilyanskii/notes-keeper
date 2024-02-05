@@ -1,9 +1,11 @@
 import { HOME } from './home';
 import { REVIEWS } from './reviews';
+import { AUTH } from './auth';
 
 export const LANGUAGES = {
 	HOME,
 	REVIEWS,
+	AUTH,
 
 	metaTag: { en: 'Notes Keeper', uk: 'Notes Keeper' },
 	successAction: { en: 'Success', uk: 'Дія успішно виконана' },
@@ -22,4 +24,6 @@ export const LANGUAGES = {
 	gotIt: { en: 'Got it', uk: 'Зрозуміло' },
 	in: { en: 'in', uk: 'в' },
 	share: { en: 'Share', uk: 'Поділитися' },
+	login: { en: 'Login', uk: 'Увійти' },
+	register: { en: 'Register', uk: 'Зареєструватися' },
 };
