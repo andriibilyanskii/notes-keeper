@@ -3,8 +3,10 @@ import { useEffect } from 'react';
 
 import { CONSTANTS } from '@constants';
 
+import { About } from '@components';
+
 const Home: NextPage = () => {
-	return <div>Notes Keeper</div>;
+	return <About />;
 };
 
 export default Home;

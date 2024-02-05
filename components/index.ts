@@ -31,4 +31,4 @@ export { default as PageTransition } from './PageTransition/PageTransition';
 export { PageCover } from './PageCover/PageCover';
 export { SWRProvider } from './SWRProvider/SWRProvider';
 
-export { MetaTags } from './MetaTags/MetaTags';
+export const About = dynamic(() => import('./pageParts/about/About/About'));

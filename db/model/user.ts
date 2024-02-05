@@ -23,6 +23,6 @@ const schema = new Schema({
 	},
 });
 
-const User = models.worker || model('worker', schema);
+const User = models.user || model('user', schema);
 
 export default User;

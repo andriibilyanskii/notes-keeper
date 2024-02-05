@@ -2,7 +2,7 @@ import React, { CSSProperties } from 'react';
 import { useRouter } from 'next/router';
 import classNames from 'classnames';
 
-import { MetaTags, PageTransition, PopUp, Loader } from '@components';
+import { PageTransition, PopUp, Loader } from '@components';
 
 import styles from './PageCover.module.scss';
 
@@ -24,16 +24,6 @@ interface IProps {
 		props?: any;
 	}>;
 	withFooter?: boolean;
-	metaTags?: {
-		title?: string;
-		description?: string;
-		image?: {
-			url: string;
-			alt: string;
-			type: 'image/svg+xml' | 'image/jpeg' | 'image/*';
-		};
-		dontShowEndLine?: boolean;
-	};
 	mainPadding?: boolean;
 	style?: CSSProperties;
 	onlyPhone?: boolean;
@@ -46,7 +36,6 @@ const PageCover: React.FC<IProps> = (props, ref) => {
 		mainClassName,
 		headers,
 		withFooter,
-		metaTags,
 		mainPadding,
 		style,
 		onlyPhone,
@@ -67,8 +56,6 @@ const PageCover: React.FC<IProps> = (props, ref) => {
 			})}
 			style={style}
 		>
-			<MetaTags {...metaTags} />
-
 			<PageTransition ref={ref}>
 				<main
 					className={classNames({

@@ -18,7 +18,7 @@ const Contexts: React.FC<IProps> = (props) => {
 	const [language, setLanguage] = useState(
 		typeof window !== 'undefined'
 			? (getDataFromLocalStorage('user-language', 'string') as string) ||
-					(LANGUAGES.reviewsInPhone?.[window.navigator.language.split('-')?.[0]]
+					(LANGUAGES.metaTag?.[window.navigator.language.split('-')?.[0]]
 						? window.navigator.language.split('-')[0]
 						: 'uk')
 			: 'uk'
