@@ -1,0 +1,45 @@
+.lazyLoadImage {
+	&_absolute {
+		width: 100%;
+		height: 100%;
+		position: absolute;
+	}
+
+	position: relative;
+
+	.placeholderBlock {
+		overflow: hidden;
+
+		img {
+			filter: blur(10px);
+			clip-path: inset(0 round 10px);
+		}
+	}
+
+	span {
+		width: 100%;
+		height: 100%;
+		background-size: cover !important;
+		background-position: center;
+	}
+
+	img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+
+		&.round {
+			border-radius: 10px;
+		}
+	}
+
+	&_contain {
+		span {
+			background-size: contain !important;
+		}
+
+		img {
+			object-fit: contain;
+		}
+	}
+}

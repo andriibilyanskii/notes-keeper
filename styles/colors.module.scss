@@ -1,0 +1,96 @@
+// PRIMARY
+$primary-blue: #1a96f0;
+$primary-white: #ffffff;
+
+// NEUTRALS
+$gray-900: #0e0f19;
+$gray-800: #44444d;
+$gray-700: #6e7385;
+$gray-600: #9397a6;
+$gray-500: #adb2be;
+$gray-400: #dbdfe6;
+$gray-300: #e7e8eb;
+$gray-200: #eeeef1;
+$gray-100: #f5f5f7;
+$gray-50: #fafafb;
+
+// ACCENT
+$green-100: #0ea875;
+$green-80: #0ea875cc;
+$green-60: #0ea87599;
+$green-40: #0ea87566;
+$green-20: #0ea87533;
+$green-8: #0ea87514;
+
+$red-100: #f15c5c;
+$red-80: #f15c5ccc;
+$red-60: #f15c5c99;
+$red-40: #f15c5c66;
+$red-20: #f15c5c33;
+$red-8: #f15c5c14;
+
+$orange-100: #ff9960;
+$orange-80: #ff9960cc;
+$orange-60: #ff996099;
+$orange-40: #ff996066;
+$orange-20: #ff996033;
+$orange-8: #ff996014;
+
+$yellow-100: #f9df5e;
+$yellow-80: #f9df5ecc;
+$yellow-60: #f9df5e99;
+$yellow-40: #f9df5e66;
+$yellow-20: #f9df5e33;
+$yellow-8: #f9df5e14;
+
+$gradient-blue: linear-gradient(270.89deg, #0b6db3 -9.02%, #1a96f0 107.35%);
+
+// TRANSPARENT
+$dark-48: #1616257a;
+$dark-24: #1616253d;
+$primary-blue_opacity-8: #1a96f014;
+$gradient-overlay: linear-gradient(180deg, rgba(22, 22, 37, 0) 0%, rgba(22, 22, 37, 0.24) 100%);
+
+:export {
+	primary-blue: $primary-blue;
+	primary-white: $primary-white;
+	gray-900: $gray-900;
+	gray-800: $gray-800;
+	gray-700: $gray-700;
+	gray-600: $gray-600;
+	gray-500: $gray-500;
+	gray-400: $gray-400;
+	gray-300: $gray-300;
+	gray-200: $gray-200;
+	gray-100: $gray-100;
+	gray-50: $gray-50;
+	green-100: $green-100;
+	green-80: $green-80;
+	green-60: $green-60;
+	green-40: $green-40;
+	green-20: $green-20;
+	green-8: $green-8;
+	red-100: $red-100;
+	red-80: $red-80;
+	red-60: $red-60;
+	red-40: $red-40;
+	red-20: $red-20;
+	red-8: $red-8;
+	orange-100: $orange-100;
+	orange-80: $orange-80;
+	orange-60: $orange-60;
+	orange-40: $orange-40;
+	orange-20: $orange-20;
+	orange-8: $orange-8;
+	yellow-100: $yellow-100;
+	yellow-80: $yellow-80;
+	yellow-60: $yellow-60;
+	yellow-40: $yellow-40;
+	yellow-20: $yellow-20;
+	yellow-8: $yellow-8;
+	dark-48: $dark-48;
+	dark-24: $dark-24;
+	gradient-overlay: $gradient-overlay;
+	primary-blue_opacity-8: $primary-blue_opacity-8;
+	gradient-blue: $gradient-blue;
+}

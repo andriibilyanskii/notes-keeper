@@ -1,0 +1,32 @@
+@import '@styles/colors.module.scss';
+
+.tag {
+	border-radius: 4px;
+	width: fit-content;
+	padding: 5px 8px;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	gap: 4px;
+	background-color: $gray-100;
+	backdrop-filter: blur(1px);
+
+	&_reversed {
+		flex-direction: row-reverse;
+	}
+
+	&Icon {
+		background-color: $gray-900;
+	}
+
+	span {
+		color: $gray-900;
+		display: -webkit-inline-box;
+		overflow: hidden;
+		overflow-wrap: anywhere;
+		text-overflow: ellipsis;
+		-webkit-line-clamp: 1;
+		-webkit-box-orient: vertical;
+	}
+}

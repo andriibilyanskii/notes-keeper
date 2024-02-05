@@ -1,0 +1,37 @@
+@import '@styles/colors.module';
+@import '@styles/fonts.module';
+
+.phoneInput {
+	@include p2;
+	border-color: $gray-300;
+	height: 56px;
+
+	.input {
+		@include p2;
+
+		height: 56px;
+		border-color: $gray-300;
+	}
+
+	input.input::placeholder {
+		color: $gray-700;
+	}
+
+	.flagDropdown {
+		&:hover {
+			border-top-left-radius: 5px;
+			border-bottom-left-radius: 5px;
+		}
+		ul {
+			li {
+				@include p2;
+				color: $gray-700;
+
+				input::placeholder {
+					@include p2;
+					color: $gray-700;
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,94 @@
+@import '@styles/colors.module.scss';
+@import '@styles/fonts.module.scss';
+
+.textComponent {
+	font-family: 'Montserrat', 'Tahoma', 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS',
+		sans-serif;
+
+	&_click {
+		cursor: pointer;
+	}
+
+	&.textHeader {
+		@include header;
+	}
+
+	&.title {
+		&-h1 {
+			@include title-h1;
+		}
+
+		&-h2 {
+			@include title-h2;
+		}
+
+		&-h3 {
+			@include title-h3;
+		}
+
+		&-h4 {
+			@include title-h4;
+		}
+	}
+
+	&.p1 {
+		@include p1;
+	}
+
+	&.p2 {
+		@include p2;
+	}
+
+	&.s1 {
+		font-size: 0.75rem;
+		line-height: 1rem;
+		display: block;
+
+		&_bold {
+			font-weight: 700;
+		}
+
+		&_semibold {
+			font-weight: 600;
+		}
+
+		&_medium {
+			font-weight: 500;
+		}
+
+		&_regular {
+			font-weight: 400;
+		}
+	}
+
+	&.s2 {
+		font-size: 0.625rem;
+		line-height: 0.75rem;
+		display: block;
+
+		&_bold {
+			font-weight: 700;
+		}
+
+		&_semibold {
+			font-weight: 600;
+		}
+
+		&_medium {
+			font-weight: 500;
+		}
+
+		&_regular {
+			font-weight: 400;
+		}
+	}
+
+	&_lineClamp {
+		display: -webkit-inline-box;
+		overflow: hidden;
+		overflow-wrap: anywhere;
+		text-overflow: ellipsis;
+		-webkit-line-clamp: 1;
+		-webkit-box-orient: vertical;
+	}
+}

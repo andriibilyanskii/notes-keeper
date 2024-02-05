@@ -1,0 +1,7 @@
+@import '@styles/colors.module.scss';
+
+.link {
+	&_blue {
+		color: $primary-blue;
+	}
+}

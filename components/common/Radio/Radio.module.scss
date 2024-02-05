@@ -1,0 +1,13 @@
+@import '@styles/colors.module.scss';
+
+.radio {
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 100%;
+    border: 1px solid $gray-300;
+    transition: 0.15s;
+    
+    &_selected {
+        border: 0.5rem solid $primary-blue;
+    }
+}

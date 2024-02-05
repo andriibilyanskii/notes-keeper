@@ -1,0 +1,17 @@
+.iconText {
+	display: grid;
+	grid-template-columns: auto 1fr;
+
+	&_reversed {
+		grid-template-columns: 1fr auto;
+	}
+
+	&_disabled {
+		opacity: 0.5;
+		cursor: not-allowed;
+	}
+
+	&_clickable {
+		cursor: pointer;
+	}
+}

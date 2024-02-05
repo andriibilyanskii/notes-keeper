@@ -1,0 +1,41 @@
+@import '@styles/colors.module.scss';
+
+.checkbox {
+	position: relative;
+	cursor: pointer;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+
+	&_reversed {
+		flex-direction: row-reverse;
+	}
+
+	&_disabled {
+		opacity: 0.5;
+		cursor: not-allowed;
+	}
+
+	.check {
+		width: 1.5rem;
+		height: 1.5rem;
+		border-radius: 100%;
+		border: 1px solid $gray-300;
+		transition: 0.15s;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
+		&_checked {
+			background-color: $primary-blue;
+			border-color: $primary-blue;
+		}
+	}
+
+	input {
+		width: 0;
+		height: 0;
+		visibility: hidden;
+		position: absolute;
+	}
+}

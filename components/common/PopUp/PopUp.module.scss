@@ -1,0 +1,28 @@
+@import '@styles/colors.module.scss';
+
+.popup {
+	height: auto;
+
+	&-filters {
+	}
+
+	&-header {
+		position: relative;
+		text-align: center;
+
+		border-top-right-radius: 25px !important;
+		border-top-left-radius: 25px !important;
+
+		&::after {
+			position: absolute;
+			content: '';
+			width: 64px;
+			height: 4px;
+			top: -12px;
+			left: 50%;
+			transform: translateX(-50%);
+			border-radius: 2px;
+			background-color: $primary-white;
+		}
+	}
+}

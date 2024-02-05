@@ -1,0 +1,25 @@
+@import '@styles/colors.module.scss';
+
+.popupHeader {
+	display: grid;
+	align-items: center;
+	gap: 1rem;
+	padding: 1.25rem 1rem;
+
+	&_withButton {
+		grid-template-columns: 1fr 1fr 1fr;
+	}
+
+	&_withBorder {
+		border-bottom: 1px solid $gray-200;
+	}
+
+	&-text {
+		text-align: center;
+		width: 100%;
+	}
+
+	.backButton {
+		padding: 0;
+	}
+}

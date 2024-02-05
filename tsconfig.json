@@ -1,0 +1,38 @@
+{
+	"compilerOptions": {
+		"target": "es5",
+		"lib": ["dom", "dom.iterable", "esnext"],
+		"downlevelIteration": true,
+		"allowJs": true,
+		"skipLibCheck": true,
+		"allowSyntheticDefaultImports": true,
+		"strict": true,
+		"forceConsistentCasingInFileNames": true,
+		"noEmit": true,
+		"noFallthroughCasesInSwitch": true,
+		"esModuleInterop": true,
+		"module": "esnext",
+		"noImplicitAny": false,
+		"moduleResolution": "node",
+		"resolveJsonModule": true,
+		"isolatedModules": true,
+		"jsx": "preserve",
+		"incremental": true,
+		"baseUrl": ".",
+		"paths": {
+			"@components": ["components"],
+			"@api/*": ["pages/api/*"],
+			"@db/*": ["db/*"],
+			"@languages": ["languages"],
+			"@styles/*": ["styles/*"],
+			"@shared": ["shared"],
+			"@shared/hooks": ["shared/hooks"],
+			"@shared/telegramBot": ["shared/telegramBot"],
+			"@context": ["context"],
+			"@constants": ["constants"],
+			"@componentInterfaces": ["db/interfaces/componentInterfaces"]
+		}
+	},
+	"include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+	"exclude": ["node_modules"]
+}

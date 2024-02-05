@@ -1,0 +1,11 @@
+@import '@styles/colors.module.scss';
+
+.icon {
+	width: 1rem;
+	height: 1rem;
+	background-color: $gray-900;
+
+	&_colorful {
+		background-color: initial;
+	}
+}

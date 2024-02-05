@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://rv.in-phone.com/
+
+# Sitemaps
+Sitemap: https://rv.in-phone.com/sitemap.xml

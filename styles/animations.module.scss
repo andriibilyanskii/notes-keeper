@@ -1,0 +1,43 @@
+@mixin bounceIn($time: 0.35s) {
+	animation: bounceIn $time linear;
+
+	@keyframes bounceIn {
+		0% {
+			transform: scale(0.1);
+			opacity: 0;
+		}
+		100% {
+			opacity: 1;
+			transform: scale(1);
+		}
+	}
+}
+
+@mixin spin($time: 1s) {
+	animation: spin $time linear infinite;
+
+	@keyframes spin {
+		0% {
+			transform: rotate(0deg);
+		}
+		100% {
+			transform: rotate(360deg);
+		}
+	}
+}
+
+@mixin resizeLogo($time: 2.5s) {
+	animation: resizeLogo $time ease-in-out infinite;
+
+	@keyframes resizeLogo {
+		0% {
+			width: 60%;
+		}
+		50% {
+			width: 75%;
+		}
+		100% {
+			width: 60%;
+		}
+	}
+}

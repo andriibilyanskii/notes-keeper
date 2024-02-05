@@ -1,0 +1,226 @@
+@import '@styles/colors.module.scss';
+@import '@styles/fonts.module.scss';
+
+.button {
+	border-radius: 0.75rem;
+	outline: 1px solid transparent;
+	border: 1px solid transparent;
+
+	cursor: pointer;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 0.5rem;
+	width: fit-content;
+
+	text-align: center;
+	font-family: $primary-font;
+	font-style: normal;
+	font-weight: $semibold;
+	text-transform: uppercase;
+
+	&_L {
+		padding: 1rem 2rem;
+		font-size: 1rem;
+		line-height: 1.5rem;
+	}
+
+	&_M {
+		padding: 0.75rem 2rem;
+
+		font-size: 0.875rem;
+		line-height: 1.5rem;
+	}
+
+	&_S {
+		padding: 0.625rem 1.75rem;
+
+		font-size: 0.875rem;
+		line-height: 1.25rem;
+	}
+
+	&_XS {
+		padding: 0.5rem 1.5rem;
+
+		font-size: 0.75rem;
+		line-height: 1rem;
+	}
+
+	&_XXS {
+		padding: 0;
+		width: 40px;
+		height: 40px;
+	}
+
+	&_XXXS {
+		padding: 0.5rem;
+		width: 2rem;
+		height: 2rem;
+		border-radius: 0.5rem;
+	}
+
+	&_width100 {
+		width: 100%;
+	}
+
+	&-icon {
+		&_right {
+			&_L {
+				padding: 1rem 1.75rem 1rem 2rem;
+			}
+
+			&_M {
+				padding: 0.75rem 1.75rem 0.75rem 2rem;
+			}
+
+			&_S {
+				padding: 0.625rem 1.5rem 0.625rem 1.75rem;
+			}
+
+			&_XS {
+				padding: 0.5rem 1.25rem 0.5rem 1.5rem;
+			}
+		}
+
+		&_left {
+			flex-direction: row-reverse;
+
+			&_L {
+				padding: 1rem 2rem 1rem 1.75rem;
+			}
+
+			&_M {
+				padding: 0.75rem 2rem 0.75rem 1.75rem;
+			}
+
+			&_S {
+				padding: 0.625rem 1.75rem 0.625rem 1.5rem;
+			}
+
+			&_XS {
+				padding: 0.5rem 1.5rem 0.5rem 1.25rem;
+			}
+		}
+
+		&_onlyIcon {
+			&_L {
+				padding: 1rem;
+			}
+
+			&_M {
+				padding: 0.75rem;
+			}
+
+			&_S {
+				padding: 0.625rem;
+			}
+
+			&_XS {
+				padding: 0.5rem;
+			}
+
+			&_XXS {
+				padding: 0;
+			}
+
+			&_XXXS {
+				padding: 0.5rem;
+			}
+		}
+
+		&_nav {
+			background-color: $primary-white;
+		}
+
+		.buttonIcon {
+			width: 25px;
+			height: 25px;
+			background-color: black;
+
+			&_initialColor {
+				background-color: initial;
+			}
+		}
+	}
+
+	&_primary {
+		color: $primary-white;
+		background: $primary-blue;
+
+		.buttonIcon {
+			background: $primary-white;
+		}
+
+		&:hover {
+			background: #0d7dcd;
+		}
+
+		&:focus {
+			outline: 4px solid $gray-200;
+		}
+
+		&:disabled {
+			opacity: 0.48;
+			cursor: not-allowed;
+		}
+	}
+
+	&_secondary {
+		color: $gray-900;
+		background: $primary-white;
+		border-color: $primary-blue;
+
+		.buttonIcon {
+			background-color: $gray-900;
+		}
+
+		&:hover {
+			color: #0d7dcd;
+			border-color: #0d7dcd;
+
+			.buttonIcon {
+				// filter: contrast(0.6);
+				background-color: #0d7dcd;
+			}
+		}
+
+		&:focus {
+			background: #1a96f014;
+		}
+
+		&:disabled {
+			opacity: 0.48;
+			cursor: not-allowed;
+		}
+	}
+
+	&_tertiary {
+		color: $gray-900;
+		background: $gray-100;
+
+		.buttonIcon {
+			background-color: $gray-900;
+		}
+
+		&:hover {
+			color: $primary-blue;
+			background: $gray-200;
+		}
+
+		&:focus {
+			background: $gray-100;
+			outline: 4px solid $gray-200;
+		}
+
+		&:disabled {
+			opacity: 0.48;
+			cursor: not-allowed;
+		}
+	}
+
+	&_tag {
+		background-color: $primary-blue;
+		color: $primary-white;
+	}
+}
