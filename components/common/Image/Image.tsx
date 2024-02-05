@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { default as ImageNext } from 'next/image';
 import classNames from 'classnames';
 
 import { INextImage } from '@componentInterfaces';

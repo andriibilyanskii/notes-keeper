@@ -1,22 +1,10 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { useRouter } from 'next/router';
+import React, { useEffect, useState } from 'react';
 import classNames from 'classnames';
 
-import {
-	Text,
-	PageCover,
-	Link,
-	Button,
-	IconContent,
-	Icon,
-	Input,
-	Image,
-	FilterTagComponent,
-} from '@components';
+import { Button, Input, FilterTagComponent } from '@components';
 
 import {
 	fetchData,
-	getColor,
 	useAppContext,
 	useNotesContext,
 	usePopUpContext,
@@ -25,7 +13,6 @@ import {
 import { useLanguage } from '@shared/hooks';
 
 import { LANGUAGES } from '@languages';
-import { CONSTANTS } from '@constants';
 
 import styles from './AddNote.module.scss';
 
@@ -69,7 +56,9 @@ const AddNote: React.FC = () => {
 					},
 					{ setIsLoading: setShowLoader }
 				)?.then((e) => {
-					setNotes([...notes, e?.note]);
+					if (selectedCategory === categoryID) {
+						setNotes([...notes, e?.note]);
+					}
 				});
 
 				setTitle('');

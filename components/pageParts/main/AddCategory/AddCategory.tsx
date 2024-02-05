@@ -1,12 +1,10 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { useRouter } from 'next/router';
+import React, { useState } from 'react';
 import classNames from 'classnames';
 
-import { Text, PageCover, Link, Button, IconContent, Icon, Input, Image } from '@components';
+import { Button, Input } from '@components';
 
 import {
 	fetchData,
-	getColor,
 	useAppContext,
 	useNotesContext,
 	usePopUpContext,
@@ -15,7 +13,6 @@ import {
 import { useLanguage } from '@shared/hooks';
 
 import { LANGUAGES } from '@languages';
-import { CONSTANTS } from '@constants';
 
 import styles from './AddCategory.module.scss';
 

@@ -15,6 +15,10 @@ const NoteController = {
 			return getJSON(await Note.find({ userID }));
 		},
 
+		async byCategoryID(userID: string, categoryID: string): Promise<Array<INote>> {
+			return getJSON(await Note.find({ userID, categoryID }));
+		},
+
 		async byID(userID: string, id: string): Promise<INote> {
 			return getJSON((await Note.findOne({ userID, _id: id })?.lean()) || {}) as INote;
 		},

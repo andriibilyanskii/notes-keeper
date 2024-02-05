@@ -4,7 +4,6 @@ import { Button, Link, PageCover, Text } from '@components';
 
 import { useLanguage } from '@shared/hooks';
 
-import { LANGUAGES } from '@languages';
 
 import styles from './auth.module.scss';
 import { useAppContext } from '@shared';

@@ -5,8 +5,8 @@ import { useEffect, useState } from 'react';
 import { AuthLayout, Input } from '@components';
 import { LANGUAGES } from '@languages';
 
-import { fetchData, successMessage } from '@shared';
-import { useAuthSession, useLanguage, useSessionStorage } from '@shared/hooks';
+import { fetchData } from '@shared';
+import { useAuthSession, useLanguage } from '@shared/hooks';
 
 const Register: NextPage = () => {
 	const { language } = useLanguage();

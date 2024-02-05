@@ -2,7 +2,6 @@ import type { NextPage } from 'next';
 
 import { SuccessPage } from '@components';
 
-import { CONSTANTS } from '@constants';
 import { LANGUAGES } from '@languages';
 
 import { useLanguage } from '@shared/hooks';

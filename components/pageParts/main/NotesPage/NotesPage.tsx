@@ -1,27 +1,18 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import classNames from 'classnames';
 
 import {
-	Text,
 	PageCover,
-	Link,
 	Button,
-	IconContent,
-	Icon,
-	Input,
-	Image,
 	PrivateRoute,
 	AddCategory,
-	Tag,
+	AddNote,
 	FilterTagComponent,
 } from '@components';
 
-import { ICategory, INote } from '@db/interfaces';
-
 import {
 	fetchData,
-	getColor,
 	useAppContext,
 	useNotesContext,
 	usePopUpContext,
@@ -33,7 +24,6 @@ import { LANGUAGES } from '@languages';
 import { CONSTANTS } from '@constants';
 
 import styles from './NotesPage.module.scss';
-import AddNote from '../AddNote/AddNote';
 
 const NotesPage: React.FC = () => {
 	const { language } = useLanguage();
@@ -47,24 +37,24 @@ const NotesPage: React.FC = () => {
 	const router = useRouter();
 
 	useEffect(() => {
-		if (notes?.length === 0 || categories?.length === 0) {
-			fetchData(
-				'/api/notes',
-				{
-					authorizationUser: user,
-				},
-				{ setIsLoading: setShowLoader }
-			).then((e) => {
-				if (Array.isArray(e?.notes)) {
-					setNotes(e?.notes);
-				}
+		fetchData(
+			'/api/notes',
+			{
+				body: { selectedCategory },
+				withHeaders: true,
+				authorizationUser: user,
+			},
+			{ setIsLoading: setShowLoader }
+		).then((e) => {
+			if (Array.isArray(e?.notes)) {
+				setNotes(e?.notes);
+			}
 
-				if (Array.isArray(e?.categories)) {
-					setCategories(e?.categories);
-				}
-			});
-		}
-	}, [categories?.length, notes?.length, setShowLoader, user]);
+			if (Array.isArray(e?.categories)) {
+				setCategories(e?.categories);
+			}
+		});
+	}, [selectedCategory, setCategories, setNotes, setShowLoader, user]);
 
 	return (
 		<PrivateRoute>
@@ -134,6 +124,18 @@ const NotesPage: React.FC = () => {
 									}}
 								/>
 							))}
+						</div>
+					</div>
+				)}
+
+				{notes?.length > 0 && (
+					<div
+						className={classNames({
+							[styles['notesPage-notes']]: true,
+						})}
+					>
+						<div className={styles['notesPage-notes-list']}>
+							<pre>{JSON.stringify(notes, null, 5)}</pre>
 						</div>
 					</div>
 				)}

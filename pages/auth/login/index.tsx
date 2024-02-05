@@ -3,7 +3,7 @@ import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 
-import { AuthLayout, Input, Link, Text } from '@components';
+import { AuthLayout, Input } from '@components';
 
 import { successMessage, errorMessage, notificationToastFunc, useUserContext } from '@shared';
 import { useLanguage, useAuthSession } from '@shared/hooks';

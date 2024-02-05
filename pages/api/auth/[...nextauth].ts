@@ -5,7 +5,7 @@ import connectMongo from '@db/connectMongo';
 import { UserController } from '@db/controllers';
 import { IUser } from '@db/interfaces';
 
-import { comparePassword, cookies } from '@shared';
+import { comparePassword } from '@shared';
 
 async function authorize(credentials: any) {
 	connectMongo();

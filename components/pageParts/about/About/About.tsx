@@ -1,14 +1,11 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { useRouter } from 'next/router';
+import React from 'react';
 import classNames from 'classnames';
 
-import { Text, PageCover, Link, Button, IconContent, Icon, Input, Image } from '@components';
+import { PageCover, Button } from '@components';
 
-import { getColor, useUserContext } from '@shared';
 import { useLanguage } from '@shared/hooks';
 
 import { LANGUAGES } from '@languages';
-import { CONSTANTS } from '@constants';
 
 import styles from './About.module.scss';
 

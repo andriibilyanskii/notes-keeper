@@ -4,7 +4,6 @@ import { UserController } from '@db/controllers';
 import { IUser } from '@db/interfaces';
 
 import { errorMessage, getJSON, hashPassword, successMessage } from '@shared';
-import { CONSTANTS } from '@constants';
 
 export async function register(username, password, passwordConfirmed) {
 	if (password !== passwordConfirmed) {
