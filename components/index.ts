@@ -24,6 +24,7 @@ export { PopupHeader } from './common/PopupHeader/PopupHeader';
 export { Loader } from './common/Loader/Loader';
 export { SuccessPage } from './common/SuccessPage/SuccessPage';
 export { IconContent } from './common/IconContent/IconContent';
+export { FilterTagComponent } from './common/FilterTagComponent/FilterTagComponent';
 
 export { PrivateRoute } from './PrivateRoute/PrivateRoute';
 

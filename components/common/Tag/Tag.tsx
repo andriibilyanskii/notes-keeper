@@ -3,12 +3,11 @@ import classNames from 'classnames';
 
 import { Icon, Text } from '@components';
 
-
 import styles from './Tag.module.scss';
 
 interface IProps {
 	children: React.ReactNode;
-	iconSrc: string;
+	iconSrc?: string;
 	iconColor?: string;
 	iconSize?: string;
 	textComponent?: 'S1' | 'S2';
@@ -44,13 +43,15 @@ const Tag: React.FC<IProps> = (props) => {
 				background: background || '',
 			}}
 		>
-			<Icon
-				src={iconSrc}
-				color={iconColor || ''}
-				className={styles['tagIcon']}
-				onClick={onClickIcon}
-				size={(iconSize as any) || '0.75rem'}
-			/>
+			{iconSrc && (
+				<Icon
+					src={iconSrc}
+					color={iconColor || ''}
+					className={styles['tagIcon']}
+					onClick={onClickIcon}
+					size={(iconSize as any) || '0.75rem'}
+				/>
+			)}
 
 			{React.createElement(
 				Text[textComponent as string],

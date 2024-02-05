@@ -57,6 +57,7 @@ const Contexts: React.FC<IProps> = (props) => {
 
 	const [notes, setNotes] = useState<Array<INote>>([]);
 	const [categories, setCategories] = useState<Array<ICategory>>([]);
+	const [selectedCategory, setSelectedCategory] = useState('all');
 
 	return (
 		<AppContext.Provider
@@ -95,6 +96,8 @@ const Contexts: React.FC<IProps> = (props) => {
 							setNotes,
 							categories,
 							setCategories,
+							selectedCategory,
+							setSelectedCategory,
 						}}
 					>
 						{children}

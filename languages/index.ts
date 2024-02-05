@@ -28,4 +28,5 @@ export const LANGUAGES = {
 	share: { en: 'Share', uk: 'Поділитися' },
 	login: { en: 'Login', uk: 'Увійти' },
 	register: { en: 'Register', uk: 'Зареєструватися' },
+	all: { en: 'All', uk: 'Всі' },
 };

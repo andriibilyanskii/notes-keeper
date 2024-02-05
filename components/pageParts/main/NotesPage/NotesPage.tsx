@@ -1,5 +1,5 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { useRouter } from 'next/router';
+import React, {useEffect, useRef, useState} from 'react';
+import {useRouter} from 'next/router';
 import classNames from 'classnames';
 
 import {
@@ -13,9 +13,11 @@ import {
 	Image,
 	PrivateRoute,
 	AddCategory,
+	Tag,
+	FilterTagComponent,
 } from '@components';
 
-import { ICategory, INote } from '@db/interfaces';
+import {ICategory, INote} from '@db/interfaces';
 
 import {
 	fetchData,
@@ -25,20 +27,21 @@ import {
 	usePopUpContext,
 	useUserContext,
 } from '@shared';
-import { useLanguage } from '@shared/hooks';
+import {useLanguage} from '@shared/hooks';
 
-import { LANGUAGES } from '@languages';
-import { CONSTANTS } from '@constants';
+import {LANGUAGES} from '@languages';
+import {CONSTANTS} from '@constants';
 
 import styles from './NotesPage.module.scss';
 
 const NotesPage: React.FC = () => {
-	const { language } = useLanguage();
+	const {language} = useLanguage();
 
-	const { notes, setNotes, categories, setCategories } = useNotesContext();
-	const { setShowLoader } = useAppContext();
-	const { user } = useUserContext();
-	const { setIsOpenPopUp, setPopupChildren } = usePopUpContext();
+	const {notes, setNotes, categories, setCategories, selectedCategory, setSelectedCategory} =
+		useNotesContext();
+	const {setShowLoader} = useAppContext();
+	const {user} = useUserContext();
+	const {setIsOpenPopUp, setPopupChildren} = usePopUpContext();
 
 	useEffect(() => {
 		if (notes?.length === 0 || categories?.length === 0) {
@@ -47,7 +50,7 @@ const NotesPage: React.FC = () => {
 				{
 					authorizationUser: user,
 				},
-				{ setIsLoading: setShowLoader }
+				{setIsLoading: setShowLoader}
 			).then((e) => {
 				if (Array.isArray(e?.notes)) {
 					setNotes(e?.notes);
@@ -67,14 +70,13 @@ const NotesPage: React.FC = () => {
 					[styles['notesPage']]: true,
 				})}
 			>
+
+
 				<div
 					className={classNames({
 						[styles['notesPage-categories']]: true,
 					})}
 				>
-					{/*<Text.Title type={'h3'}>
-						{language(LANGUAGES.NOTES.notesCount)}: {notes?.length}
-					</Text.Title>*/}
 					<Button
 						icon={{
 							src: CONSTANTS.ICONS.plus,
@@ -83,13 +85,31 @@ const NotesPage: React.FC = () => {
 						buttonSize={'S'}
 						onClick={() => {
 							setIsOpenPopUp(true);
-							setPopupChildren(<AddCategory />);
+							setPopupChildren(<AddCategory/>);
 						}}
 					>
 						{language(LANGUAGES.CATEGORIES.addCategory)}
 					</Button>
+
+					<div className={styles['notesPage-categories-list']}>
+						<FilterTagComponent
+							id={'all'}
+							text={language(LANGUAGES.all)}
+							isSelected={selectedCategory === 'all'}
+							onClick={setSelectedCategory}
+						/>
+
+						{categories?.map((e) => (
+							<FilterTagComponent
+								key={e?._id}
+								text={e?.title}
+								id={e?._id as string}
+								isSelected={selectedCategory === e?._id}
+								onClick={setSelectedCategory}
+							/>
+						))}
+					</div>
 				</div>
-				<pre>{JSON.stringify(categories, null, 5)}</pre>
 			</PageCover>
 		</PrivateRoute>
 	);

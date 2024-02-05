@@ -6,6 +6,8 @@ interface IContext {
 	setNotes: (note: INote[]) => void;
 	categories: ICategory[];
 	setCategories: (category: ICategory[]) => void;
+	selectedCategory: string;
+	setSelectedCategory: (categoryID: string) => void;
 }
 
 const notesContext: IContext = {
@@ -13,6 +15,8 @@ const notesContext: IContext = {
 	setNotes: (note: INote[]) => {},
 	categories: [] as ICategory[],
 	setCategories: (category: ICategory[]) => {},
+	selectedCategory: '',
+	setSelectedCategory: (categoryID: string) => {},
 };
 
 const NotesContext = React.createContext(notesContext);
