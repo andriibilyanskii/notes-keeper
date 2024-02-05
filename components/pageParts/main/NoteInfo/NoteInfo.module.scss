@@ -10,4 +10,10 @@
   border: 1px solid $gray-200;
   border-radius: 0.5rem;
   background: $primary-white;
+
+  &-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
 }

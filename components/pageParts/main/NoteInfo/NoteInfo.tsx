@@ -3,7 +3,7 @@ import classNames from 'classnames';
 
 import { INote } from '@db/interfaces';
 
-import { Button, Input, Text } from '@components';
+import { Button, Icon, IconContent, Input, Text } from '@components';
 
 import {
 	fetchData,
@@ -18,6 +18,7 @@ import { useLanguage } from '@shared/hooks';
 import { LANGUAGES } from '@languages';
 
 import styles from './NoteInfo.module.scss';
+import { CONSTANTS } from '@constants';
 
 interface IProps {
 	note: INote;
@@ -26,7 +27,10 @@ interface IProps {
 const NoteInfo: React.FC<IProps> = ({ note }) => {
 	const { language } = useLanguage();
 
-	const { categories } = useNotesContext();
+	const { categories, notes, setNotes } = useNotesContext();
+	const { user } = useUserContext();
+	const { setShowLoader } = useAppContext();
+	const { setIsOpenPopUp } = usePopUpContext();
 
 	return (
 		<div
@@ -42,6 +46,57 @@ const NoteInfo: React.FC<IProps> = ({ note }) => {
 				{language(LANGUAGES.NOTES.category)}:{' '}
 				{categories?.find((e) => e?._id === note?.categoryID)?.title}
 			</Text.P2>
+
+			<div className={styles['noteInfo-buttons']}>
+				<IconContent
+					content={
+						<Text.P2 color={getColor('primary-blue')}>
+							{language(LANGUAGES.edit)}
+						</Text.P2>
+					}
+					icon={
+						<Icon
+							src={CONSTANTS.ICONS.edit}
+							size={'1.25rem'}
+							color={getColor('primary-blue')}
+						/>
+					}
+					onClick={() => {
+						console.log('edit');
+					}}
+				/>
+
+				<IconContent
+					content={
+						<Text.P2 color={getColor('red-100')}>
+							{language(LANGUAGES.delete)}
+						</Text.P2>
+					}
+					icon={
+						<Icon
+							src={CONSTANTS.ICONS.trash}
+							size={'1.25rem'}
+							color={getColor('red-100')}
+						/>
+					}
+					onClick={() => {
+						if (window.confirm(language(LANGUAGES.NOTES.deleteNote) + '?')) {
+							fetchData(
+								'/api/notes/delete-note',
+								{
+									body: { noteID: note?._id },
+									withHeaders: true,
+									authorizationUser: user,
+								},
+								{ setIsLoading: setShowLoader }
+							).then(() => {
+								setNotes(notes?.filter((n) => n?._id !== note?._id));
+								setIsOpenPopUp(false);
+							});
+						}
+					}}
+				/>
+			</div>
 		</div>
 	);
 };

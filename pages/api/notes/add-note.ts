@@ -29,7 +29,7 @@ export async function addNote(userID, title, description, categoryID) {
 		updatedDate: createdDate,
 	});
 
-	return { successMessage, note };
+	return { ...successMessage, note };
 }
 
 export default async function handler(req: NextApiRequest & { user: IUser }, res: NextApiResponse) {

@@ -29,4 +29,6 @@ export const LANGUAGES = {
 	login: { en: 'Login', uk: 'Увійти' },
 	register: { en: 'Register', uk: 'Зареєструватися' },
 	all: { en: 'All', uk: 'Всі' },
+	delete: { en: 'Delete', uk: 'Видалити' },
+	edit: { en: 'Edit', uk: 'Редагувати' },
 };

@@ -5,4 +5,5 @@ export const NOTES = {
 	enterDescription: { en: 'Description', uk: 'Опис' },
 	noResults: { en: 'No results', uk: 'У цій категорії немає нотаток' },
 	category: { en: 'Category', uk: 'Категорія' },
+	deleteNote: { en: 'Delete note', uk: 'Видалити нотатку' },
 };
