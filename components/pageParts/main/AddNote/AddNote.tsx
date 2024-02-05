@@ -56,7 +56,7 @@ const AddNote: React.FC = () => {
 					},
 					{ setIsLoading: setShowLoader }
 				)?.then((e) => {
-					if (selectedCategory === categoryID) {
+					if (selectedCategory === categoryID || selectedCategory === 'all') {
 						setNotes([...notes, e?.note]);
 					}
 				});
@@ -98,7 +98,11 @@ const AddNote: React.FC = () => {
 				</div>
 			</div>
 
-			<Button width100={true} type={'submit'} disabled={!title}>
+			<Button
+				width100={true}
+				type={'submit'}
+				disabled={!title || !categoryID || categoryID === 'all'}
+			>
 				{language(LANGUAGES.NOTES.addNote)}
 			</Button>
 		</form>

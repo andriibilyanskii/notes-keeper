@@ -32,6 +32,8 @@ export { default as PageTransition } from './PageTransition/PageTransition';
 export { PageCover } from './PageCover/PageCover';
 export { SWRProvider } from './SWRProvider/SWRProvider';
 
+export { default as NoteCard } from './pageParts/main/NoteCard/NoteCard';
+
 export const About = dynamic(() => import('./pageParts/about/About/About'));
 export const AuthLayout = dynamic(() => import('./pageParts/auth/AuthLayout/AuthLayout'));
 export const NotesPage = dynamic(() => import('./pageParts/main/NotesPage/NotesPage'));

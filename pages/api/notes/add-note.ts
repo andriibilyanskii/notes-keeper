@@ -1,13 +1,22 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 
 import connectMongo from '@db/connectMongo';
-import { NoteController } from '@db/controllers';
+import { CategoryController, NoteController } from '@db/controllers';
 import { IUser } from '@db/interfaces';
 
 import { authorizationMiddleware, errorMessage, successMessage } from '@shared';
 
 export async function addNote(userID, title, description, categoryID) {
 	await connectMongo();
+
+	if (!categoryID || categoryID === 'all') {
+		throw 'no category';
+	}
+
+	const categoryExists = await CategoryController.exists.byID(userID, categoryID);
+	if (!categoryExists) {
+		throw "category doesn't exists";
+	}
 
 	const createdDate = new Date().toISOString();
 

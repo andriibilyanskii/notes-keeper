@@ -9,6 +9,7 @@ import {
 	AddCategory,
 	AddNote,
 	FilterTagComponent,
+	NoteCard,
 } from '@components';
 
 import {
@@ -129,14 +130,10 @@ const NotesPage: React.FC = () => {
 				)}
 
 				{notes?.length > 0 && (
-					<div
-						className={classNames({
-							[styles['notesPage-notes']]: true,
-						})}
-					>
-						<div className={styles['notesPage-notes-list']}>
-							<pre>{JSON.stringify(notes, null, 5)}</pre>
-						</div>
+					<div className={styles['notesPage-notes-list']}>
+						{notes?.map((e) => (
+							<NoteCard key={e?._id} note={e} />
+						))}
 					</div>
 				)}
 			</PageCover>

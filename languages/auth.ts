@@ -23,4 +23,5 @@ export const AUTH = {
 	dontHaveAccount: { en: "Don't have an account?", uk: 'Немає облікового запису?' },
 	register: { en: 'Register', uk: 'Зареєструватись' },
 	haveAccount: { en: 'Already have an account?', uk: 'Вже є обліковий запис?' },
+	passwordsDontMatch: { en: 'Passwords do not match', uk: 'Паролі не співпадають' },
 };

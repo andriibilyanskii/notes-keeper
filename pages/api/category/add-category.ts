@@ -10,7 +10,6 @@ export async function addCategory(userID, title) {
 	await connectMongo();
 
 	const categoryExists = await CategoryController.exists.byTitle(userID, title);
-
 	if (categoryExists) {
 		throw 'category exists';
 	}

@@ -6,7 +6,7 @@ import { getJSON } from '@shared';
 const NoteController = {
 	exists: {
 		async byID(userID: string, _id: string): Promise<any> {
-			return await Note.exists({ _id });
+			return await Note.exists({ userID, _id });
 		},
 	},
 

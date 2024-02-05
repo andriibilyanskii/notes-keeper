@@ -5,8 +5,9 @@ import { useEffect, useState } from 'react';
 import { AuthLayout, Input } from '@components';
 import { LANGUAGES } from '@languages';
 
-import { fetchData } from '@shared';
+import { errorMessage, fetchData, notificationToastFunc, successMessage } from '@shared';
 import { useAuthSession, useLanguage } from '@shared/hooks';
+import { signIn } from 'next-auth/react';
 
 const Register: NextPage = () => {
 	const { language } = useLanguage();
@@ -53,10 +54,22 @@ const Register: NextPage = () => {
 						return response;
 					}
 				},
-				onOk: (response) => {
-					console.log(response);
+				onOk: async (response) => {
+					const result = await signIn('credentials', {
+						redirect: false,
+						username,
+						password,
+					});
 
-					router?.push('/auth/register/user-info/profile');
+					if (result?.ok) {
+						router?.replace('/');
+					} else {
+						notificationToastFunc({
+							language: 'uk',
+							type: 'error',
+							text: 'auth error',
+						});
+					}
 				},
 				inputs: (
 					<>
@@ -94,8 +107,7 @@ const Register: NextPage = () => {
 										message: {
 											type: 'error',
 											text: language(
-												LANGUAGES.AUTH.USER_INFO
-													.passwordsDontMatch
+												LANGUAGES.AUTH.passwordsDontMatch
 											),
 										},
 								  }

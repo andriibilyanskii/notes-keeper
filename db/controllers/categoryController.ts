@@ -6,11 +6,11 @@ import { getJSON } from '@shared';
 const CategoryController = {
 	exists: {
 		async byTitle(userID: string, title: string): Promise<any> {
-			return await Category.exists({ title });
+			return await Category.exists({ userID, title });
 		},
 
 		async byID(userID: string, _id: string): Promise<any> {
-			return await Category.exists({ _id });
+			return await Category.exists({ userID, _id });
 		},
 	},
 
