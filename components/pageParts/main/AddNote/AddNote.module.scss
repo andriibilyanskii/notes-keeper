@@ -1,12 +1,12 @@
 @import '@styles/colors.module.scss';
 @import '@styles/animations.module.scss';
 
-.notesPage {
+.addNote {
   display: flex;
   flex-direction: column;
   flex-grow: 1;
   gap: 1rem;
-  width: 100%;
+  padding: 1rem;
 
   /* width */
   ::-webkit-scrollbar {

@@ -3,7 +3,7 @@ interface ICategory {
 	userID: string;
 	title: string;
 	description: string;
-	category: string;
+	categoryID: string;
 	createdDate: string;
 	updatedDate: string;
 }

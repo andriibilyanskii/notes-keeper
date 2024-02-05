@@ -10,9 +10,9 @@ import { useUserContext } from '@shared';
 const Home: NextPage = () => {
 	const { user } = useUserContext();
 
-	if (JSON.stringify(user) === '{}') {
-		return <Loader manualShow={true} />;
-	}
+	// if (JSON.stringify(user) === '{}') {
+	// 	return <Loader manualShow={true} />;
+	// }
 
 	if (!user?._id) {
 		return <About />;

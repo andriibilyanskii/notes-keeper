@@ -60,6 +60,7 @@ const AddCategory: React.FC = () => {
 				value={title}
 				placeholder={language(LANGUAGES.CATEGORIES.enterCategoryTitle)}
 				autoFocus={true}
+				required={true}
 			/>
 
 			<Button width100={true} type={'submit'} disabled={!title}>

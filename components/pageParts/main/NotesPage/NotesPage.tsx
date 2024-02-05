@@ -33,6 +33,7 @@ import { LANGUAGES } from '@languages';
 import { CONSTANTS } from '@constants';
 
 import styles from './NotesPage.module.scss';
+import AddNote from '../AddNote/AddNote';
 
 const NotesPage: React.FC = () => {
 	const { language } = useLanguage();
@@ -72,11 +73,7 @@ const NotesPage: React.FC = () => {
 					[styles['notesPage']]: true,
 				})}
 			>
-				<div
-					className={classNames({
-						[styles['notesPage-categories']]: true,
-					})}
-				>
+				<div className={styles['notesPage-buttons']}>
 					<Button
 						icon={{
 							src: CONSTANTS.ICONS.plus,
@@ -85,37 +82,61 @@ const NotesPage: React.FC = () => {
 						buttonSize={'S'}
 						onClick={() => {
 							setIsOpenPopUp(true);
+							setPopupChildren(<AddNote />);
+						}}
+						disabled={categories?.length === 0}
+					>
+						{language(LANGUAGES.NOTES.addNote)}
+					</Button>
+
+					<Button
+						icon={{
+							src: CONSTANTS.ICONS.plus,
+							position: 'left',
+						}}
+						buttonSize={'S'}
+						buttonType={'secondary'}
+						onClick={() => {
+							setIsOpenPopUp(true);
 							setPopupChildren(<AddCategory />);
 						}}
 					>
 						{language(LANGUAGES.CATEGORIES.addCategory)}
 					</Button>
+				</div>
 
-					<div className={styles['notesPage-categories-list']}>
-						<FilterTagComponent
-							id={'all'}
-							text={language(LANGUAGES.all)}
-							isSelected={selectedCategory === 'all'}
-							onClick={(e) => {
-								setSelectedCategory(e);
-								router.push({ query: { category: e } });
-							}}
-						/>
-
-						{categories?.map((e) => (
+				{categories?.length > 0 && (
+					<div
+						className={classNames({
+							[styles['notesPage-categories']]: true,
+						})}
+					>
+						<div className={styles['notesPage-categories-list']}>
 							<FilterTagComponent
-								key={e?._id}
-								text={e?.title}
-								id={e?._id as string}
-								isSelected={selectedCategory === e?._id}
+								id={'all'}
+								text={language(LANGUAGES.all)}
+								isSelected={selectedCategory === 'all'}
 								onClick={(e) => {
 									setSelectedCategory(e);
 									router.push({ query: { category: e } });
 								}}
 							/>
-						))}
+
+							{categories?.map((e) => (
+								<FilterTagComponent
+									key={e?._id}
+									text={e?.title}
+									id={e?._id as string}
+									isSelected={selectedCategory === e?._id}
+									onClick={(e) => {
+										setSelectedCategory(e);
+										router.push({ query: { category: e } });
+									}}
+								/>
+							))}
+						</div>
 					</div>
-				</div>
+				)}
 			</PageCover>
 		</PrivateRoute>
 	);

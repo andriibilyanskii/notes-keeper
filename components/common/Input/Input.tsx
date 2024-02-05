@@ -46,7 +46,6 @@ interface IProps {
 	};
 	setIsFocusedInput?: (e: boolean) => void;
 	stylePhoneNumber?: { buttonStyle?: object; inputStyle?: object };
-	restaurantMainLanguage?: string;
 }
 
 const Input: React.FC<IProps> = (props) => {
@@ -69,7 +68,6 @@ const Input: React.FC<IProps> = (props) => {
 		maxLength,
 		setIsFocusedInput,
 		stylePhoneNumber,
-		restaurantMainLanguage,
 		...rest
 	} = props;
 
@@ -160,17 +158,6 @@ const Input: React.FC<IProps> = (props) => {
 			...(nonStyledInput ? { placeholder } : {}),
 		});
 
-	let country = 'ua';
-	switch (restaurantMainLanguage) {
-		case 'uk':
-			country = 'ua';
-			break;
-		case 'pl':
-			country = 'pl';
-			break;
-		default:
-	}
-
 	return (
 		<div
 			className={classNames({
@@ -183,7 +170,7 @@ const Input: React.FC<IProps> = (props) => {
 			) : (
 				<PhoneInput
 					value={rest.value as string}
-					country={country}
+					country={'ua'}
 					onChange={props.onChange}
 					style={stylePhoneNumber}
 					required={!!props?.required}

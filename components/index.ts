@@ -36,3 +36,4 @@ export const About = dynamic(() => import('./pageParts/about/About/About'));
 export const AuthLayout = dynamic(() => import('./pageParts/auth/AuthLayout/AuthLayout'));
 export const NotesPage = dynamic(() => import('./pageParts/main/NotesPage/NotesPage'));
 export const AddCategory = dynamic(() => import('./pageParts/main/AddCategory/AddCategory'));
+export const AddNote = dynamic(() => import('./pageParts/main/AddNote/AddNote'));

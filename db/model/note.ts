@@ -11,7 +11,7 @@ const schema = new Schema({
 		require: true,
 		trim: true,
 	},
-	category: {
+	categoryID: {
 		type: String,
 		require: true,
 		trim: true,
