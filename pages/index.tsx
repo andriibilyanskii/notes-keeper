@@ -3,10 +3,22 @@ import { useEffect } from 'react';
 
 import { CONSTANTS } from '@constants';
 
-import { About } from '@components';
+import { About, Loader, NotesPage } from '@components';
+
+import { useUserContext } from '@shared';
 
 const Home: NextPage = () => {
-	return <About />;
+	const { user } = useUserContext();
+
+	if (JSON.stringify(user) === '{}') {
+		return <Loader manualShow={true} />;
+	}
+
+	if (!user?._id) {
+		return <About />;
+	}
+
+	return <NotesPage />;
 };
 
 export default Home;

@@ -22,6 +22,5 @@ export const AUTH = {
 	registration: { en: 'Registration', uk: 'Реєстрація' },
 	dontHaveAccount: { en: "Don't have an account?", uk: 'Немає облікового запису?' },
 	register: { en: 'Register', uk: 'Зареєструватись' },
-
 	haveAccount: { en: 'Already have an account?', uk: 'Вже є обліковий запис?' },
 };

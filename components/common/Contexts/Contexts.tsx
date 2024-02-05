@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
 
-import { IUser } from '@db/interfaces';
+import { ICategory, INote, IUser } from '@db/interfaces';
 
-import { PopUpContext, AppContext, UserContext } from '@context';
+import { PopUpContext, AppContext, UserContext, NotesContext } from '@context';
 
 import { LANGUAGES } from '@languages';
 
@@ -55,6 +55,9 @@ const Contexts: React.FC<IProps> = (props) => {
 	const [popupClassName, setPopupClassName] = useState('');
 	const [onClosePopup, setOnClosePopup] = useState<any>(() => {});
 
+	const [notes, setNotes] = useState<Array<INote>>([]);
+	const [categories, setCategories] = useState<Array<ICategory>>([]);
+
 	return (
 		<AppContext.Provider
 			value={{
@@ -86,7 +89,16 @@ const Contexts: React.FC<IProps> = (props) => {
 						setOnClosePopup,
 					}}
 				>
-					{children}
+					<NotesContext.Provider
+						value={{
+							notes,
+							setNotes,
+							categories,
+							setCategories,
+						}}
+					>
+						{children}
+					</NotesContext.Provider>
 				</PopUpContext.Provider>
 			</UserContext.Provider>
 		</AppContext.Provider>

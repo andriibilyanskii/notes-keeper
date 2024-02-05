@@ -15,34 +15,25 @@ import styles from './About.module.scss';
 const About: React.FC = () => {
 	const { language } = useLanguage();
 
-	const { user } = useUserContext();
-
-	useEffect(() => {
-		console.log(user);
-	});
-
 	return (
 		<PageCover
 			mainClassName={classNames({
 				[styles['about']]: true,
 			})}
-			// onlyPhone={true}
 			mainPadding={false}
 		>
-			{!user?._id && (
-				<div
-					className={classNames({
-						[styles['about-buttons']]: true,
-					})}
-				>
-					<Button width100={true} linkTo={'/auth/login'}>
-						{language(LANGUAGES.login)}
-					</Button>
-					<Button width100={true} linkTo={'/auth/register'} buttonType={'secondary'}>
-						{language(LANGUAGES.register)}
-					</Button>
-				</div>
-			)}
+			<div
+				className={classNames({
+					[styles['about-buttons']]: true,
+				})}
+			>
+				<Button width100={true} linkTo={'/auth/login'}>
+					{language(LANGUAGES.login)}
+				</Button>
+				<Button width100={true} linkTo={'/auth/register'} buttonType={'secondary'}>
+					{language(LANGUAGES.register)}
+				</Button>
+			</div>
 		</PageCover>
 	);
 };

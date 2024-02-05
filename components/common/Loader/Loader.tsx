@@ -6,14 +6,18 @@ import { useAppContext } from '@shared';
 
 import styles from './Loader.module.scss';
 
-export const Loader: React.FC = () => {
+interface IProps {
+	manualShow?: boolean;
+}
+
+export const Loader: React.FC<IProps> = ({ manualShow }) => {
 	const { showLoader } = useAppContext();
 
 	return (
 		<div
 			className={classNames({
 				[styles['loader']]: true,
-				[styles['loader_show']]: showLoader,
+				[styles['loader_show']]: showLoader || manualShow,
 			})}
 			style={{
 				backgroundImage: `url(/img/clouds-bg-transparent.svg)`,

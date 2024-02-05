@@ -1,9 +1,13 @@
 import { HOME } from './home';
 import { AUTH } from './auth';
+import { NOTES } from './notes';
+import { CATEGORIES } from './categories';
 
 export const LANGUAGES = {
 	HOME,
 	AUTH,
+	NOTES,
+	CATEGORIES,
 
 	metaTag: { en: 'Notes Keeper', uk: 'Notes Keeper' },
 	successAction: { en: 'Success', uk: 'Дія успішно виконана' },
