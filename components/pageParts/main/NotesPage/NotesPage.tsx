@@ -1,5 +1,5 @@
-import React, {useEffect, useRef, useState} from 'react';
-import {useRouter} from 'next/router';
+import React, { useEffect, useRef, useState } from 'react';
+import { useRouter } from 'next/router';
 import classNames from 'classnames';
 
 import {
@@ -17,7 +17,7 @@ import {
 	FilterTagComponent,
 } from '@components';
 
-import {ICategory, INote} from '@db/interfaces';
+import { ICategory, INote } from '@db/interfaces';
 
 import {
 	fetchData,
@@ -27,21 +27,23 @@ import {
 	usePopUpContext,
 	useUserContext,
 } from '@shared';
-import {useLanguage} from '@shared/hooks';
+import { useLanguage } from '@shared/hooks';
 
-import {LANGUAGES} from '@languages';
-import {CONSTANTS} from '@constants';
+import { LANGUAGES } from '@languages';
+import { CONSTANTS } from '@constants';
 
 import styles from './NotesPage.module.scss';
 
 const NotesPage: React.FC = () => {
-	const {language} = useLanguage();
+	const { language } = useLanguage();
 
-	const {notes, setNotes, categories, setCategories, selectedCategory, setSelectedCategory} =
+	const { notes, setNotes, categories, setCategories, selectedCategory, setSelectedCategory } =
 		useNotesContext();
-	const {setShowLoader} = useAppContext();
-	const {user} = useUserContext();
-	const {setIsOpenPopUp, setPopupChildren} = usePopUpContext();
+	const { setShowLoader } = useAppContext();
+	const { user } = useUserContext();
+	const { setIsOpenPopUp, setPopupChildren } = usePopUpContext();
+
+	const router = useRouter();
 
 	useEffect(() => {
 		if (notes?.length === 0 || categories?.length === 0) {
@@ -50,7 +52,7 @@ const NotesPage: React.FC = () => {
 				{
 					authorizationUser: user,
 				},
-				{setIsLoading: setShowLoader}
+				{ setIsLoading: setShowLoader }
 			).then((e) => {
 				if (Array.isArray(e?.notes)) {
 					setNotes(e?.notes);
@@ -70,8 +72,6 @@ const NotesPage: React.FC = () => {
 					[styles['notesPage']]: true,
 				})}
 			>
-
-
 				<div
 					className={classNames({
 						[styles['notesPage-categories']]: true,
@@ -85,7 +85,7 @@ const NotesPage: React.FC = () => {
 						buttonSize={'S'}
 						onClick={() => {
 							setIsOpenPopUp(true);
-							setPopupChildren(<AddCategory/>);
+							setPopupChildren(<AddCategory />);
 						}}
 					>
 						{language(LANGUAGES.CATEGORIES.addCategory)}
@@ -96,7 +96,10 @@ const NotesPage: React.FC = () => {
 							id={'all'}
 							text={language(LANGUAGES.all)}
 							isSelected={selectedCategory === 'all'}
-							onClick={setSelectedCategory}
+							onClick={(e) => {
+								setSelectedCategory(e);
+								router.push({ query: { category: e } });
+							}}
 						/>
 
 						{categories?.map((e) => (
@@ -105,7 +108,10 @@ const NotesPage: React.FC = () => {
 								text={e?.title}
 								id={e?._id as string}
 								isSelected={selectedCategory === e?._id}
-								onClick={setSelectedCategory}
+								onClick={(e) => {
+									setSelectedCategory(e);
+									router.push({ query: { category: e } });
+								}}
 							/>
 						))}
 					</div>

@@ -59,6 +59,12 @@ const Contexts: React.FC<IProps> = (props) => {
 	const [categories, setCategories] = useState<Array<ICategory>>([]);
 	const [selectedCategory, setSelectedCategory] = useState('all');
 
+	useEffect(() => {
+		if (router?.query?.category) {
+			setSelectedCategory(router?.query?.category as string);
+		}
+	}, [router?.query?.category]);
+
 	return (
 		<AppContext.Provider
 			value={{

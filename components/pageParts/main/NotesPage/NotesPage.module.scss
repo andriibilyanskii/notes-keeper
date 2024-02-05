@@ -7,6 +7,27 @@
   flex-grow: 1;
   width: 100%;
 
+  /* width */
+  ::-webkit-scrollbar {
+    height: 5px;
+  }
+
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: $primary-blue_opacity-8;
+    border-radius: 1rem;
+  }
+
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: $primary-blue;
+  }
+
   &-categories {
     display: flex;
     flex-direction: column;
@@ -14,11 +35,11 @@
     width: 100%;
     overflow-x: auto;
     overflow-y: hidden;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
+    //-ms-overflow-style: none;
+    //scrollbar-width: none;
 
     &::-webkit-scrollbar {
-      display: none;
+      //display: none;
     }
 
     &-list {
@@ -26,6 +47,7 @@
       flex-direction: row;
       align-items: flex-start;
       gap: 0.625rem;
+      padding-bottom: 0.5rem;
     }
   }
 }
