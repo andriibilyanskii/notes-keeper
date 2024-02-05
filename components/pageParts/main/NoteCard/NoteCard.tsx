@@ -18,6 +18,7 @@ import { useLanguage } from '@shared/hooks';
 import { LANGUAGES } from '@languages';
 
 import styles from './NoteCard.module.scss';
+import NoteInfo from '../NoteInfo/NoteInfo';
 
 interface IProps {
 	note: INote;
@@ -26,7 +27,7 @@ interface IProps {
 const NoteCard: React.FC<IProps> = ({ note }) => {
 	const { language } = useLanguage();
 
-	const { setIsOpenPopUp } = usePopUpContext();
+	const { setIsOpenPopUp, setPopupChildren } = usePopUpContext();
 
 	let description =
 		note?.description?.length > 100
@@ -38,6 +39,10 @@ const NoteCard: React.FC<IProps> = ({ note }) => {
 			className={classNames({
 				[styles['noteCard']]: true,
 			})}
+			onClick={() => {
+				setIsOpenPopUp(true);
+				setPopupChildren(<NoteInfo note={note} />);
+			}}
 		>
 			<Text.P1>{note?.title}</Text.P1>
 

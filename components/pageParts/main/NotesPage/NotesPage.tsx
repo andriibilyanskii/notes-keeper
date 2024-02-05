@@ -10,6 +10,7 @@ import {
 	AddNote,
 	FilterTagComponent,
 	NoteCard,
+	Text,
 } from '@components';
 
 import {
@@ -135,6 +136,10 @@ const NotesPage: React.FC = () => {
 							<NoteCard key={e?._id} note={e} />
 						))}
 					</div>
+				)}
+
+				{notes?.length === 0 && (
+					<Text.P1>{language(LANGUAGES.NOTES.noResults)}</Text.P1>
 				)}
 			</PageCover>
 		</PrivateRoute>

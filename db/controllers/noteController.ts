@@ -12,11 +12,13 @@ const NoteController = {
 
 	get: {
 		async all(userID: string): Promise<Array<INote>> {
-			return getJSON(await Note.find({ userID }));
+			return getJSON(await Note.find({ userID }).populate('categoryID', 'title'));
 		},
 
 		async byCategoryID(userID: string, categoryID: string): Promise<Array<INote>> {
-			return getJSON(await Note.find({ userID, categoryID }));
+			return getJSON(
+				await Note.find({ userID, categoryID }).populate('categoryID', 'title')
+			);
 		},
 
 		async byID(userID: string, id: string): Promise<INote> {

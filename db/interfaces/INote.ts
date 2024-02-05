@@ -1,4 +1,4 @@
-interface ICategory {
+interface INote {
 	_id?: string;
 	userID: string;
 	title: string;
@@ -8,4 +8,4 @@ interface ICategory {
 	updatedDate: string;
 }
 
-export default ICategory;
+export default INote;
