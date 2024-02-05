@@ -6,4 +6,5 @@ export const NOTES = {
 	noResults: { en: 'No results', uk: 'У цій категорії немає нотаток' },
 	category: { en: 'Category', uk: 'Категорія' },
 	deleteNote: { en: 'Delete note', uk: 'Видалити нотатку' },
+	editNote: { en: 'Edit note', uk: 'Редагувати нотатку' },
 };

@@ -6,8 +6,7 @@ import {
 	PageCover,
 	Button,
 	PrivateRoute,
-	AddCategory,
-	AddNote,
+	CategoryForm,
 	FilterTagComponent,
 	NoteCard,
 	Text,
@@ -26,6 +25,7 @@ import { LANGUAGES } from '@languages';
 import { CONSTANTS } from '@constants';
 
 import styles from './NotesPage.module.scss';
+import NoteForm from '../NoteForm/NoteForm';
 
 const NotesPage: React.FC = () => {
 	const { language } = useLanguage();
@@ -74,7 +74,7 @@ const NotesPage: React.FC = () => {
 						buttonSize={'S'}
 						onClick={() => {
 							setIsOpenPopUp(true);
-							setPopupChildren(<AddNote />);
+							setPopupChildren(<NoteForm />);
 						}}
 						disabled={categories?.length === 0}
 					>
@@ -90,7 +90,7 @@ const NotesPage: React.FC = () => {
 						buttonType={'secondary'}
 						onClick={() => {
 							setIsOpenPopUp(true);
-							setPopupChildren(<AddCategory />);
+							setPopupChildren(<CategoryForm />);
 						}}
 					>
 						{language(LANGUAGES.CATEGORIES.addCategory)}

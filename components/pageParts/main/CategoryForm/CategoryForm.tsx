@@ -14,9 +14,13 @@ import { useLanguage } from '@shared/hooks';
 
 import { LANGUAGES } from '@languages';
 
-import styles from './AddCategory.module.scss';
+import styles from './CategoryForm.module.scss';
 
-const AddCategory: React.FC = () => {
+interface IProps {
+	categoryID?: string;
+}
+
+const CategoryForm: React.FC<IProps> = ({ categoryID }) => {
 	const { language } = useLanguage();
 
 	const [title, setTitle] = useState('');
@@ -29,7 +33,7 @@ const AddCategory: React.FC = () => {
 	return (
 		<form
 			className={classNames({
-				[styles['addCategory']]: true,
+				[styles['categoryForm']]: true,
 			})}
 			onSubmit={async (e) => {
 				e?.preventDefault();
@@ -67,4 +71,4 @@ const AddCategory: React.FC = () => {
 	);
 };
 
-export default AddCategory;
+export default CategoryForm;

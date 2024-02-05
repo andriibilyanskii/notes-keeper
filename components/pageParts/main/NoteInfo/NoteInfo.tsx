@@ -19,6 +19,7 @@ import { LANGUAGES } from '@languages';
 
 import styles from './NoteInfo.module.scss';
 import { CONSTANTS } from '@constants';
+import NoteForm from '../NoteForm/NoteForm';
 
 interface IProps {
 	note: INote;
@@ -30,7 +31,7 @@ const NoteInfo: React.FC<IProps> = ({ note }) => {
 	const { categories, notes, setNotes } = useNotesContext();
 	const { user } = useUserContext();
 	const { setShowLoader } = useAppContext();
-	const { setIsOpenPopUp } = usePopUpContext();
+	const { setIsOpenPopUp, setPopupChildren } = usePopUpContext();
 
 	return (
 		<div
@@ -62,7 +63,7 @@ const NoteInfo: React.FC<IProps> = ({ note }) => {
 						/>
 					}
 					onClick={() => {
-						console.log('edit');
+						setPopupChildren(<NoteForm noteID={note?._id} />);
 					}}
 				/>
 

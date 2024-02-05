@@ -14,9 +14,13 @@ import { useLanguage } from '@shared/hooks';
 
 import { LANGUAGES } from '@languages';
 
-import styles from './AddNote.module.scss';
+import styles from './NoteForm.module.scss';
 
-const AddNote: React.FC = () => {
+interface IProps {
+	noteID?: string;
+}
+
+const NoteForm: React.FC<IProps> = ({ noteID }) => {
 	const { language } = useLanguage();
 
 	const [title, setTitle] = useState('');
@@ -35,16 +39,28 @@ const AddNote: React.FC = () => {
 		}
 	}, [selectedCategory]);
 
+	useEffect(() => {
+		if (noteID) {
+			const note = notes?.find((e) => e?._id === noteID);
+
+			if (note?._id) {
+				setTitle(note?.title);
+				setDescription(note?.description);
+				setCategoryID(note?.categoryID);
+			}
+		}
+	}, [noteID, notes]);
+
 	return (
 		<form
 			className={classNames({
-				[styles['addNote']]: true,
+				[styles['noteForm']]: true,
 			})}
 			onSubmit={async (e) => {
 				e?.preventDefault();
 
 				await fetchData(
-					'/api/notes/add-note',
+					`/api/notes/${noteID ? 'edit' : 'add'}-note`,
 					{
 						authorizationUser: user,
 						withHeaders: true,
@@ -52,12 +68,25 @@ const AddNote: React.FC = () => {
 							title,
 							description,
 							categoryID,
+							...(noteID ? { _id: noteID } : {}),
 						},
 					},
 					{ setIsLoading: setShowLoader }
 				)?.then((e) => {
 					if (selectedCategory === categoryID || selectedCategory === 'all') {
-						setNotes([...notes, e?.note]);
+						if (noteID) {
+							setNotes(
+								notes?.map((n) => {
+									if (n?._id === noteID) {
+										return e?.note;
+									}
+
+									return n;
+								})
+							);
+						} else {
+							setNotes([...notes, e?.note]);
+						}
 					}
 				});
 
@@ -82,10 +111,10 @@ const AddNote: React.FC = () => {
 
 			<div
 				className={classNames({
-					[styles['addNote-categories']]: true,
+					[styles['noteForm-categories']]: true,
 				})}
 			>
-				<div className={styles['addNote-categories-list']}>
+				<div className={styles['noteForm-categories-list']}>
 					{categories?.map((e) => (
 						<FilterTagComponent
 							key={e?._id}
@@ -103,10 +132,12 @@ const AddNote: React.FC = () => {
 				type={'submit'}
 				disabled={!title || !categoryID || categoryID === 'all'}
 			>
-				{language(LANGUAGES.NOTES.addNote)}
+				{noteID
+					? language(LANGUAGES.NOTES.editNote)
+					: language(LANGUAGES.NOTES.addNote)}
 			</Button>
 		</form>
 	);
 };
 
-export default AddNote;
+export default NoteForm;

@@ -26,9 +26,18 @@ const NoteController = {
 		},
 	},
 
+	async edit(userID: string, noteID: string, noteData: INote): Promise<INote> {
+		return getJSON(
+			await Note.findByIdAndUpdate(noteID, noteData, {
+				returnDocument: 'after',
+				lean: true,
+			})
+		);
+	},
+
 	async save(noteData: INote): Promise<INote> {
 		const note = await new Note(noteData);
-		return await note.save();
+		return getJSON(await note.save());
 	},
 
 	async delete(userID: string, _id: string) {
