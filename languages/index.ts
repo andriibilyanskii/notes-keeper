@@ -1,10 +1,8 @@
 import { HOME } from './home';
-import { REVIEWS } from './reviews';
 import { AUTH } from './auth';
 
 export const LANGUAGES = {
 	HOME,
-	REVIEWS,
 	AUTH,
 
 	metaTag: { en: 'Notes Keeper', uk: 'Notes Keeper' },
