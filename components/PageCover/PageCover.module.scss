@@ -1,53 +1,58 @@
 @import '@styles/colors.module.scss';
 
 .page {
-	background-color: white;
-	min-height: 100vh;
-	min-height: 100dvh;
-	display: flex;
-	flex-direction: column;
+  background-color: white;
+  min-height: 100vh;
+  min-height: 100 dvh;
+  display: flex;
+  flex-direction: column;
 
-	background-attachment: fixed;
-	background-size: contain;
-	background-repeat: repeat-x;
-	background-position: center;
-	background-position-y: bottom;
+  background-attachment: fixed;
+  background-size: contain;
+  background-repeat: repeat-x;
+  background-position: center;
+  background-position-y: bottom;
 
-	&_onlyPhone {
-		max-width: 600px;
+  &_onlyPhone {
+    max-width: 600px;
 
-		@media screen and (min-width: 600px) {
-			margin: 0 auto;
-		}
-	}
+    @media screen and (min-width: 600px) {
+      margin: 0 auto;
+    }
+  }
 
-	&_header_footer {
-		padding-bottom: 64px;
-	}
+  &_header_footer {
+    padding-bottom: 64px;
+  }
 
-	.main {
-		display: flex;
-		flex-direction: column;
-		flex-grow: 1;
+  .main {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
 
-		&_withPadding {
-			padding: 1rem;
-		}
-	}
+    &_withPadding {
+      padding: 1rem;
+    }
+  }
 
-	.header {
-		display: flex;
-		flex-direction: column;
-		gap: 1rem;
-		background: $primary-blue;
-		padding: 1.5rem 1rem;
+  .header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    background: $primary-blue;
+    padding: 1rem;
+    position: sticky;
+    top: 0;
+    z-index: 9;
 
-		&-text {
-			color: $primary-white;
-		}
+    &-text {
+      color: $primary-white;
+    }
 
-		@media screen and (max-width: 600px) {
-			padding: 1rem;
-		}
-	}
+    @media screen and (max-width: 600px) {
+      padding: 1rem;
+    }
+  }
 }

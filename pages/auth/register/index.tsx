@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import { AuthLayout, Input } from '@components';
 import { LANGUAGES } from '@languages';
 
-import { errorMessage, fetchData, notificationToastFunc, successMessage } from '@shared';
+import { fetchData, notificationToastFunc } from '@shared';
 import { useAuthSession, useLanguage } from '@shared/hooks';
 import { signIn } from 'next-auth/react';
 

@@ -2,11 +2,10 @@ import React from 'react';
 
 import { Button, Link, PageCover, Text } from '@components';
 
+import { useAppContext } from '@shared';
 import { useLanguage } from '@shared/hooks';
 
-
 import styles from './auth.module.scss';
-import { useAppContext } from '@shared';
 
 interface IProps {
 	header: 'info' | 'back';

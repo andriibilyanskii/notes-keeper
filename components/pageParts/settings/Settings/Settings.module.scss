@@ -1,0 +1,14 @@
+@import '@styles/colors.module.scss';
+@import '@styles/animations.module.scss';
+
+.settings {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  &-text {
+    &-link {
+      color: $primary-blue;
+    }
+  }
+}

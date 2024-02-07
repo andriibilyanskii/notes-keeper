@@ -40,11 +40,20 @@ const NoteController = {
 		return getJSON(await note.save());
 	},
 
-	async delete(userID: string, _id: string) {
-		return await Note.deleteOne({
-			userID,
-			_id,
-		});
+	delete: {
+		async byID(userID: string, _id: string) {
+			return await Note.deleteOne({
+				userID,
+				_id,
+			});
+		},
+
+		async byCategoryID(userID: string, categoryID: string) {
+			return await Note.deleteMany({
+				userID,
+				categoryID,
+			});
+		},
 	},
 };
 

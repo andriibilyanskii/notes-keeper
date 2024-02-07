@@ -1,9 +1,10 @@
 import React from 'react';
+import { useRouter } from 'next/router';
 import classNames from 'classnames';
 
-import { INote } from '@db/interfaces';
 
 import { Icon, IconContent, Text } from '@components';
+import CategoryForm from '../CategoryForm/CategoryForm';
 
 import {
 	fetchData,
@@ -16,39 +17,37 @@ import {
 import { useLanguage } from '@shared/hooks';
 
 import { LANGUAGES } from '@languages';
-
-import styles from './NoteInfo.module.scss';
 import { CONSTANTS } from '@constants';
-import NoteForm from '../NoteForm/NoteForm';
+
+import styles from './CategoryInfo.module.scss';
 
 interface IProps {
-	note: INote;
+	categoryID: string;
 }
 
-const NoteInfo: React.FC<IProps> = ({ note }) => {
+const CategoryInfo: React.FC<IProps> = ({ categoryID }) => {
 	const { language } = useLanguage();
 
-	const { categories, notes, setNotes } = useNotesContext();
+	const { categories, setCategories, notes, setNotes, setSelectedCategory } = useNotesContext();
 	const { user } = useUserContext();
 	const { setShowLoader } = useAppContext();
 	const { setIsOpenPopUp, setPopupChildren } = usePopUpContext();
 
+	const category = categories?.find((e) => e?._id === categoryID);
+
+	const router = useRouter();
+
 	return (
 		<div
 			className={classNames({
-				[styles['noteInfo']]: true,
+				[styles['categoryInfo']]: true,
 			})}
 		>
-			<Text.Title type={'h3'}>{note?.title}</Text.Title>
+			<Text.Title type={'h3'}>
+				{language(LANGUAGES.NOTES.category)}: {category?.title}
+			</Text.Title>
 
-			{note?.description && <Text.P1>{note?.description}</Text.P1>}
-
-			<Text.P2>
-				{language(LANGUAGES.NOTES.category)}:{' '}
-				{categories?.find((e) => e?._id === note?.categoryID)?.title}
-			</Text.P2>
-
-			<div className={styles['noteInfo-buttons']}>
+			<div className={styles['categoryInfo-buttons']}>
 				<IconContent
 					content={
 						<Text.P2 color={getColor('primary-blue')}>
@@ -63,7 +62,7 @@ const NoteInfo: React.FC<IProps> = ({ note }) => {
 						/>
 					}
 					onClick={() => {
-						setPopupChildren(<NoteForm noteID={note?._id} />);
+						setPopupChildren(<CategoryForm categoryID={category?._id} />);
 					}}
 				/>
 
@@ -81,17 +80,28 @@ const NoteInfo: React.FC<IProps> = ({ note }) => {
 						/>
 					}
 					onClick={() => {
-						if (window.confirm(language(LANGUAGES.NOTES.deleteNote) + '?')) {
+						if (
+							window.confirm(
+								language(LANGUAGES.CATEGORIES.deleteCategory) + '?'
+							)
+						) {
 							fetchData(
-								'/api/notes/delete-note',
+								'/api/category/delete-category',
 								{
-									body: { noteID: note?._id },
+									body: { categoryID: category?._id },
 									withHeaders: true,
 									authorizationUser: user,
 								},
 								{ setIsLoading: setShowLoader }
 							).then(() => {
-								setNotes(notes?.filter((n) => n?._id !== note?._id));
+								setCategories(
+									categories?.filter((c) => c?._id !== category?._id)
+								);
+								setNotes(
+									notes?.filter((n) => n?.categoryID !== category?._id)
+								);
+								setSelectedCategory('all');
+								router.push({ query: { category: 'all' } });
 								setIsOpenPopUp(false);
 							});
 						}
@@ -102,4 +112,4 @@ const NoteInfo: React.FC<IProps> = ({ note }) => {
 	);
 };
 
-export default NoteInfo;
+export default CategoryInfo;

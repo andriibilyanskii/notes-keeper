@@ -2,11 +2,13 @@ import React, { CSSProperties } from 'react';
 import { useRouter } from 'next/router';
 import classNames from 'classnames';
 
-import { PageTransition, PopUp, Loader, Text } from '@components';
+import { PageTransition, PopUp, Loader, Text, Button } from '@components';
 
-import styles from './PageCover.module.scss';
 import { LANGUAGES } from '@languages';
 import { useLanguage } from '@shared/hooks';
+
+import styles from './PageCover.module.scss';
+import { CONSTANTS } from '@constants';
 
 interface IProps {
 	children?: React.ReactNode;
@@ -71,9 +73,18 @@ const PageCover: React.FC<IProps> = (props, ref) => {
 						className={classNames({
 							[styles['header-text']]: true,
 						})}
+						onClick={() => {
+							router?.push('/');
+						}}
 					>
 						{language(LANGUAGES.metaTag)}
 					</Text.Title>
+
+					<Button
+						icon={{ src: CONSTANTS.ICONS.settings, onlyIcon: true }}
+						buttonSize={'XXS'}
+						linkTo={'/settings'}
+					/>
 				</div>
 
 				<main

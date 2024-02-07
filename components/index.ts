@@ -40,3 +40,5 @@ export const NotesPage = dynamic(() => import('./pageParts/main/NotesPage/NotesP
 export const CategoryForm = dynamic(() => import('./pageParts/main/CategoryForm/CategoryForm'));
 export const NoteForm = dynamic(() => import('./pageParts/main/NoteForm/NoteForm'));
 export const NoteInfo = dynamic(() => import('./pageParts/main/NoteInfo/NoteInfo'));
+export const Settings = dynamic(() => import('./pageParts/settings/Settings/Settings'));
+export const CategoryInfo = dynamic(() => import('./pageParts/main/CategoryInfo/CategoryInfo'));
