@@ -31,6 +31,15 @@ const CategoryController = {
 		return await category.save();
 	},
 
+	async edit(userID: string, categoryID: string, data: ICategory): Promise<ICategory> {
+		return getJSON(
+			await Category.findByIdAndUpdate(categoryID, data, {
+				returnDocument: 'after',
+				lean: true,
+			})
+		);
+	},
+
 	async delete(userID: string, _id: string) {
 		return await Category.deleteOne({
 			userID,

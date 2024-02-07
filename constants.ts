@@ -109,6 +109,7 @@ export const CONSTANTS = {
 		facebookLogo: '/assets/facebook-tag.svg',
 		gps: '/assets/gps.svg',
 		language: '/assets/language.svg',
+		settings: '/assets/settings.svg',
 	},
 
 	ACCESSIBLE_LANGUAGES: ['uk', 'en'],

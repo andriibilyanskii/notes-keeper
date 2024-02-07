@@ -5,10 +5,11 @@ import { Icon, Text } from '@components';
 
 import { CONSTANTS } from '@constants';
 
-import { getColor } from '@shared';
+import { getColor, usePopUpContext } from '@shared';
 import { useLanguage } from '@shared/hooks';
 
 import styles from './FilterTagComponent.module.scss';
+import CategoryInfo from '../../pageParts/main/CategoryInfo/CategoryInfo';
 
 interface IProps {
 	isSelected: boolean;
@@ -38,6 +39,7 @@ const FilterTagComponent: React.FC<IProps> = (props) => {
 	} = props;
 
 	const { language } = useLanguage();
+	const { setIsOpenPopUp, setPopupChildren } = usePopUpContext();
 
 	return (
 		<div
@@ -69,6 +71,17 @@ const FilterTagComponent: React.FC<IProps> = (props) => {
 				>
 					{text}
 				</Text.S1>
+			)}
+
+			{isSelected && id !== 'all' && (
+				<Icon
+					src={CONSTANTS.ICONS.more}
+					size={'0.75rem'}
+					onClick={() => {
+						setIsOpenPopUp(true);
+						setPopupChildren(<CategoryInfo categoryID={id} />);
+					}}
+				/>
 			)}
 		</div>
 	);

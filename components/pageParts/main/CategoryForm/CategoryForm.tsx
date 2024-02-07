@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import classNames from 'classnames';
 
 import { Button, Input } from '@components';
@@ -30,6 +30,16 @@ const CategoryForm: React.FC<IProps> = ({ categoryID }) => {
 	const { setIsOpenPopUp } = usePopUpContext();
 	const { categories, setCategories } = useNotesContext();
 
+	useEffect(() => {
+		if (categoryID) {
+			const category = categories?.find((e) => e?._id === categoryID);
+
+			if (category?._id) {
+				setTitle(category?.title);
+			}
+		}
+	}, [categoryID, categories]);
+
 	return (
 		<form
 			className={classNames({
@@ -39,17 +49,30 @@ const CategoryForm: React.FC<IProps> = ({ categoryID }) => {
 				e?.preventDefault();
 
 				await fetchData(
-					'/api/category/add-category',
+					`/api/category/${categoryID ? 'edit' : 'add'}-category`,
 					{
 						authorizationUser: user,
 						withHeaders: true,
 						body: {
 							title,
+							...(categoryID ? { _id: categoryID } : {}),
 						},
 					},
 					{ setIsLoading: setShowLoader }
 				)?.then((e) => {
-					setCategories([...categories, e?.category]);
+					if (categoryID) {
+						setCategories(
+							categories?.map((c) => {
+								if (c?._id === categoryID) {
+									return e?.category;
+								}
+
+								return c;
+							})
+						);
+					} else {
+						setCategories([...categories, e?.category]);
+					}
 				});
 
 				setTitle('');

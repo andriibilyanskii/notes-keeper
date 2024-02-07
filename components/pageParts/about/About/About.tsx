@@ -24,10 +24,19 @@ const About: React.FC = () => {
 					[styles['about-buttons']]: true,
 				})}
 			>
-				<Button width100={true} linkTo={'/auth/login'}>
+				<Button
+					width100={true}
+					linkTo={'/auth/login'}
+					linkClassName={styles['about-buttons-button']}
+				>
 					{language(LANGUAGES.login)}
 				</Button>
-				<Button width100={true} linkTo={'/auth/register'} buttonType={'secondary'}>
+				<Button
+					width100={true}
+					linkTo={'/auth/register'}
+					buttonType={'secondary'}
+					linkClassName={styles['about-buttons-button']}
+				>
 					{language(LANGUAGES.register)}
 				</Button>
 			</div>

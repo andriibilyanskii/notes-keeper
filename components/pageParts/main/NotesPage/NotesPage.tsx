@@ -77,6 +77,7 @@ const NotesPage: React.FC = () => {
 							setPopupChildren(<NoteForm />);
 						}}
 						disabled={categories?.length === 0}
+						className={styles['notesPage-buttons-button']}
 					>
 						{language(LANGUAGES.NOTES.addNote)}
 					</Button>
@@ -92,6 +93,7 @@ const NotesPage: React.FC = () => {
 							setIsOpenPopUp(true);
 							setPopupChildren(<CategoryForm />);
 						}}
+						className={styles['notesPage-buttons-button']}
 					>
 						{language(LANGUAGES.CATEGORIES.addCategory)}
 					</Button>

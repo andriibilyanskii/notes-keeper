@@ -1,37 +1,30 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 
 import connectMongo from '@db/connectMongo';
-import { CategoryController, NoteController } from '@db/controllers';
-import { INote, IUser } from '@db/interfaces';
+import { CategoryController } from '@db/controllers';
+import { ICategory, IUser } from '@db/interfaces';
 
 import { authorizationMiddleware, errorMessage, successMessage } from '@shared';
 
-export async function addNote(userID, noteData: INote) {
+export async function editCategory(userID, body) {
 	await connectMongo();
 
-	const { categoryID, _id, title, description } = noteData;
+	const { _id, title } = body;
 
-	if (!categoryID || categoryID === 'all') {
-		throw 'no category';
-	}
-
-	const categoryExists = await CategoryController.exists.byID(userID, categoryID);
+	const categoryExists = await CategoryController.exists.byID(userID, _id);
 	if (!categoryExists) {
 		throw "category doesn't exist";
 	}
 
-	const note = await NoteController.edit(
+	const category = await CategoryController.edit(
 		userID,
 		_id as string,
 		{
 			title,
-			description,
-			categoryID,
-			updatedDate: new Date().toISOString(),
-		} as INote
+		} as ICategory
 	);
 
-	return { ...successMessage, note };
+	return { ...successMessage, category };
 }
 
 export default async function handler(req: NextApiRequest & { user: IUser }, res: NextApiResponse) {
@@ -40,7 +33,7 @@ export default async function handler(req: NextApiRequest & { user: IUser }, res
 			throw 'no user';
 		}
 
-		const result: any = await addNote(req.user?._id, req.body);
+		const result: any = await editCategory(req.user?._id, req.body);
 
 		res.status(200).json(result);
 	} catch (e) {

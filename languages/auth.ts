@@ -24,4 +24,5 @@ export const AUTH = {
 	register: { en: 'Register', uk: 'Зареєструватись' },
 	haveAccount: { en: 'Already have an account?', uk: 'Вже є обліковий запис?' },
 	passwordsDontMatch: { en: 'Passwords do not match', uk: 'Паролі не співпадають' },
+	logOut: { en: 'Log out', uk: 'Вийти' },
 };
