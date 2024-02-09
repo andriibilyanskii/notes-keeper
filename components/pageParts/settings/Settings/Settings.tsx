@@ -32,7 +32,7 @@ const Settings: React.FC = () => {
 							{language(LANGUAGES.AUTH.username)}: {user?.username}
 						</Text.P2>
 						<Text.P2>
-							{language(LANGUAGES.createdDate)}:{' '}
+							{language(LANGUAGES.NOTES.createdDate)}:{' '}
 							{formatDate(user?.createdDate)}
 						</Text.P2>
 					</div>

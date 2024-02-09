@@ -3,7 +3,7 @@ import classNames from 'classnames';
 
 import { INote } from '@db/interfaces';
 
-import { Icon, IconContent, Text } from '@components';
+import { Icon, IconContent, Text, NoteForm } from '@components';
 
 import {
 	fetchData,
@@ -12,14 +12,14 @@ import {
 	useNotesContext,
 	usePopUpContext,
 	useUserContext,
+	formatDate,
 } from '@shared';
 import { useLanguage } from '@shared/hooks';
 
 import { LANGUAGES } from '@languages';
+import { CONSTANTS } from '@constants';
 
 import styles from './NoteInfo.module.scss';
-import { CONSTANTS } from '@constants';
-import NoteForm from '../NoteForm/NoteForm';
 
 interface IProps {
 	note: INote;
@@ -47,6 +47,14 @@ const NoteInfo: React.FC<IProps> = ({ note }) => {
 				{language(LANGUAGES.NOTES.category)}:{' '}
 				{categories?.find((e) => e?._id === note?.categoryID)?.title}
 			</Text.P2>
+
+			<Text.S1>
+				{language(LANGUAGES.NOTES.createdDate)}: {formatDate(note?.createdDate)}
+			</Text.S1>
+
+			<Text.S1>
+				{language(LANGUAGES.NOTES.editedDate)}: {formatDate(note?.updatedDate)}
+			</Text.S1>
 
 			<div className={styles['noteInfo-buttons']}>
 				<IconContent

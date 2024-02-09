@@ -7,4 +7,6 @@ export const NOTES = {
 	category: { en: 'Category', uk: 'Категорія' },
 	deleteNote: { en: 'Delete note', uk: 'Видалити нотатку' },
 	editNote: { en: 'Edit note', uk: 'Редагувати нотатку' },
+	createdDate: { en: 'Created date', uk: 'Дата створення' },
+	editedDate: { en: 'Edited date', uk: 'Дата редагування' },
 };

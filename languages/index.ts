@@ -31,5 +31,4 @@ export const LANGUAGES = {
 	all: { en: 'All', uk: 'Всі' },
 	delete: { en: 'Delete', uk: 'Видалити' },
 	edit: { en: 'Edit', uk: 'Редагувати' },
-	createdDate: { en: 'Created date', uk: 'Дата реєстрації' },
 };
