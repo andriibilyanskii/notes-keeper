@@ -87,6 +87,14 @@ const NoteForm: React.FC<IProps> = ({ noteID }) => {
 						} else {
 							setNotes([...notes, e?.note]);
 						}
+					} else {
+						if (noteID) {
+							setNotes(
+								notes?.filter((n) => {
+									return n?._id !== noteID;
+								})
+							);
+						}
 					}
 				});
 
