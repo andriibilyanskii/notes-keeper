@@ -122,6 +122,7 @@ const NoteForm: React.FC<IProps> = ({ noteID }) => {
 							id={e?._id as string}
 							isSelected={categoryID === e?._id}
 							onClick={setCategoryID}
+							toNotEdit={true}
 						/>
 					))}
 				</div>

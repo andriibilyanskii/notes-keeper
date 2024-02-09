@@ -1,15 +1,13 @@
 import React from 'react';
 import classNames from 'classnames';
 
-import { Icon, Text } from '@components';
+import { Icon, Text, CategoryInfo } from '@components';
 
 import { CONSTANTS } from '@constants';
 
 import { getColor, usePopUpContext } from '@shared';
-import { useLanguage } from '@shared/hooks';
 
 import styles from './FilterTagComponent.module.scss';
-import CategoryInfo from '../../pageParts/main/CategoryInfo/CategoryInfo';
 
 interface IProps {
 	isSelected: boolean;
@@ -22,6 +20,7 @@ interface IProps {
 	background?: string;
 	className?: string;
 	isSelected_className?: boolean;
+	toNotEdit?: boolean;
 }
 
 const FilterTagComponent: React.FC<IProps> = (props) => {
@@ -36,9 +35,9 @@ const FilterTagComponent: React.FC<IProps> = (props) => {
 		className,
 		isSelected_className,
 		id,
+		toNotEdit,
 	} = props;
 
-	const { language } = useLanguage();
 	const { setIsOpenPopUp, setPopupChildren } = usePopUpContext();
 
 	return (
@@ -73,7 +72,7 @@ const FilterTagComponent: React.FC<IProps> = (props) => {
 				</Text.S1>
 			)}
 
-			{isSelected && id !== 'all' && (
+			{isSelected && id !== 'all' && !toNotEdit && (
 				<Icon
 					src={CONSTANTS.ICONS.more}
 					size={'0.75rem'}
