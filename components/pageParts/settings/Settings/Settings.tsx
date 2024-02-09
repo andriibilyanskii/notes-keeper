@@ -3,13 +3,9 @@ import { signOut } from 'next-auth/react';
 import { useRouter } from 'next/router';
 import classNames from 'classnames';
 
-
 import { Button, Link, PageCover, Text } from '@components';
 
-import {
-	usePopUpContext,
-	useUserContext,
-} from '@shared';
+import { formatDate, usePopUpContext, useUserContext } from '@shared';
 import { useLanguage } from '@shared/hooks';
 
 import { LANGUAGES } from '@languages';
@@ -32,18 +28,31 @@ const Settings: React.FC = () => {
 			})}
 		>
 			{user?._id && (
-				<Button
-					icon={{ src: CONSTANTS.ICONS.logOut, position: 'left' }}
-					onClick={async () => {
-						await signOut({
-							redirect: false,
-							callbackUrl: '/',
-						});
-						router?.replace('/');
-					}}
-				>
-					{language(LANGUAGES.AUTH.logOut)}
-				</Button>
+				<div className={styles['settings-userInfo']}>
+					<div>
+						<Text.P2>
+							{language(LANGUAGES.AUTH.username)}: {user?.username}
+						</Text.P2>
+						<Text.P2>
+							{language(LANGUAGES.createdDate)}:{' '}
+							{formatDate(user?.createdDate)}
+						</Text.P2>
+					</div>
+
+					<Button
+						icon={{ src: CONSTANTS.ICONS.logOut, position: 'left' }}
+						buttonSize={'XS'}
+						onClick={async () => {
+							await signOut({
+								redirect: false,
+								callbackUrl: '/',
+							});
+							router?.replace('/');
+						}}
+					>
+						{language(LANGUAGES.AUTH.logOut)}
+					</Button>
+				</div>
 			)}
 
 			<Text.P2 className={styles['settings-text']}>
