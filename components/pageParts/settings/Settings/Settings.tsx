@@ -5,7 +5,7 @@ import classNames from 'classnames';
 
 import { Button, Link, PageCover, Text } from '@components';
 
-import { formatDate, usePopUpContext, useUserContext } from '@shared';
+import { formatDate, useUserContext } from '@shared';
 import { useLanguage } from '@shared/hooks';
 
 import { LANGUAGES } from '@languages';
@@ -15,8 +15,6 @@ import styles from './Settings.module.scss';
 
 const Settings: React.FC = () => {
 	const { language } = useLanguage();
-
-	const { setIsOpenPopUp, setPopupChildren } = usePopUpContext();
 	const { user } = useUserContext();
 
 	const router = useRouter();

@@ -10,7 +10,6 @@ export { Link } from './common/Link/Link';
 export { PhoneInput } from './common/PhoneInput/PhoneInput';
 export { PopUp } from './common/PopUp/PopUp';
 export { NotificationToast } from './common/NotificationToast/NotificationToast';
-export { EatwyPopup } from './common/EatwyPopup/EatwyPopup';
 export { Contexts } from './common/Contexts/Contexts';
 export { PopupHeader } from './common/PopupHeader/PopupHeader';
 export { Loader } from './common/Loader/Loader';

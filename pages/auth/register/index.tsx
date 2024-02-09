@@ -31,7 +31,6 @@ const Register: NextPage = () => {
 
 	return (
 		<AuthLayout
-			header={'info'}
 			signInText={{
 				title: language(LANGUAGES.AUTH.registration),
 				p2: language(LANGUAGES.AUTH.singInRegisterText),

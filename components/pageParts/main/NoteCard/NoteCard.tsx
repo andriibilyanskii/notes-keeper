@@ -6,13 +6,7 @@ import { INote } from '@db/interfaces';
 import { Text } from '@components';
 import NoteInfo from '../NoteInfo/NoteInfo';
 
-import {
-	getColor,
-	useNotesContext,
-	usePopUpContext,
-} from '@shared';
-import { useLanguage } from '@shared/hooks';
-
+import { getColor, usePopUpContext } from '@shared';
 
 import styles from './NoteCard.module.scss';
 
@@ -21,10 +15,7 @@ interface IProps {
 }
 
 const NoteCard: React.FC<IProps> = ({ note }) => {
-	const { language } = useLanguage();
-
 	const { setIsOpenPopUp, setPopupChildren } = usePopUpContext();
-	const { selectedCategory } = useNotesContext();
 
 	let description =
 		note?.description?.length > 100

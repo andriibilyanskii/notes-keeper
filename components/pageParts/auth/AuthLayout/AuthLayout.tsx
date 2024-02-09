@@ -3,12 +3,10 @@ import React from 'react';
 import { Button, Link, PageCover, Text } from '@components';
 
 import { useAppContext } from '@shared';
-import { useLanguage } from '@shared/hooks';
 
 import styles from './auth.module.scss';
 
 interface IProps {
-	header: 'info' | 'back';
 	signInText: {
 		title: string;
 		p2: string;
@@ -31,9 +29,7 @@ interface IProps {
 }
 
 const AuthLayout: React.FC<IProps> = (props) => {
-	const { header, signInText, form, underForm } = props;
-
-	const { language, lang } = useLanguage();
+	const { signInText, form, underForm } = props;
 
 	const { setShowLoader } = useAppContext();
 

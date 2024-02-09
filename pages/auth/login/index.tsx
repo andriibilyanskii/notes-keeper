@@ -28,7 +28,6 @@ const Login: NextPage = () => {
 
 	return (
 		<AuthLayout
-			header={'info'}
 			signInText={{
 				title: language(LANGUAGES.AUTH.welcome),
 				p2: language(LANGUAGES.AUTH.singInLoginText),
