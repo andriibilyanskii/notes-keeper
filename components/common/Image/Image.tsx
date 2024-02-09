@@ -3,8 +3,6 @@ import classNames from 'classnames';
 
 import { INextImage } from '@componentInterfaces';
 
-import { getImage } from '@shared';
-
 import styles from './Image.module.scss';
 
 interface IProps {
@@ -22,11 +20,7 @@ const Image: React.FC<IProps> = (props) => {
 
 	const [isError, setIsError] = useState(false);
 
-	const src_image = !isError
-		? isBlob
-			? src
-			: String(getImage([src || ''])) || imagePlaceholder
-		: imagePlaceholder;
+	const src_image = !isError ? src : imagePlaceholder;
 
 	const onError = () => {
 		setIsError(true);
